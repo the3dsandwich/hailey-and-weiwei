@@ -22,13 +22,31 @@ const SignupForm = () => {
     try {
       const formData = new FormData(event.currentTarget);
       const formJSON = {
-        name: event.target.name.value,
-        email: event.target.email.value,
-        phone: event.target.phone.value,
-        comments: event.target.comments.value,
-        vegan: event.target.vegan.checked,
-        vegetarian: event.target.vegetarian.checked,
-        glutenFree: event.target.glutenFree.checked,
+        name: (
+          event.currentTarget.elements.namedItem("name") as HTMLInputElement
+        ).value,
+        email: (
+          event.currentTarget.elements.namedItem("email") as HTMLInputElement
+        ).value,
+        phone: (
+          event.currentTarget.elements.namedItem("phone") as HTMLInputElement
+        ).value,
+        comments: (
+          event.currentTarget.elements.namedItem("comments") as HTMLInputElement
+        ).value,
+        vegan: (
+          event.currentTarget.elements.namedItem("vegan") as HTMLInputElement
+        ).checked,
+        vegetarian: (
+          event.currentTarget.elements.namedItem(
+            "vegetarian"
+          ) as HTMLInputElement
+        ).checked,
+        glutenFree: (
+          event.currentTarget.elements.namedItem(
+            "gluten-free"
+          ) as HTMLInputElement
+        ).checked,
       };
 
       const response = await fetch("/api/submit", {
@@ -91,27 +109,14 @@ const SignupForm = () => {
                 />
               </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="guests">Number of guests</Label>
-              <Select id="guests">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
-              </Select>
-            </div>
             <fieldset className="space-y-2">
               <legend className="text-lg font-medium">
                 Meal preferences (check all that apply)
               </legend>
               <div className="space-y-2">
-                <Checkbox id="vegan" />
-                vegan
-                <Checkbox id="vegetarian" />
-                vegetarian
-                <Checkbox id="glutenFree" />
-                gluten-free
+                <Checkbox id="vegan" /> vegan
+                <Checkbox id="vegetarian" /> vegetarian
+                <Checkbox id="gluten-free" /> gluten-free
               </div>
             </fieldset>
             <div className="space-y-2">
