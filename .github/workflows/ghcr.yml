@@ -22,7 +22,7 @@ jobs:
       - name: Checkout GitHub Action
         uses: actions/checkout@v4
       - name: Docker meta
-        id: meta
+        id: docker_meta
         uses: docker/metadata-action@v5
         with:
           images: the3dsandwich/hailey-and-weiwei-backend
