@@ -29,5 +29,5 @@ jobs:
           password: ${{secrets.GITHUB_TOKEN}}
       - name: "Build Image"
         run: |
-          docker build backend --tag ghcr.io/${{github.actor}}/hailey-and-weiwei-backend:latest
+          docker build . -f Containerfile --tag ghcr.io/${{github.actor}}/hailey-and-weiwei-backend:latest
           docker push ghcr.io/${{github.actor}}/hailey-and-weiwei-backend:latest
