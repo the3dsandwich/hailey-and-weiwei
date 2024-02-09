@@ -2,22 +2,28 @@ version: "3.7"
 services:
   postgres-db:
     image: postgres:13.2-alpine
+    container_name: hailey-and-weiwei-backend-postgresql
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
       PGDATA: /var/lib/postgresql/data
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     volumes:
       - postgres-db-data:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4:latest
+    container_name: hailey-and-weiwei-backend-pgadmin
     depends_on:
       - postgres-db
     restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@example.com}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-postgres}
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     ports:
       - ${PGADMIN_PORT:-8080}:80
     volumes:
@@ -26,14 +32,31 @@ services:
       - postgres-db:pgsql-server
   backend:
     image: ghcr.io/the3dsandwich/hailey-and-weiwei-backend:dev
+    container_name: hailey-and-weiwei-backend
     depends_on:
       - postgres-db
     environment:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL:-jdbc:postgresql://postgres-db:5432/postgres}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-postgres}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-password}
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
     ports:
       - ${BACKEND_PORT:-8081}:8081
+  watchtower:
+    image: containrrr/watchtower
+    container_name: hailey-and-weiwei-backend-watchtowerr
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_LABEL_ENABLE=true
+      - WATCHTOWER_SCHEDULE=0 0 4 * * SAT
+      - WATCHTOWER_DEBUG=true
+    restart: unless-stopped
 volumes:
   postgres-db-data:
   pgadmin-data:
