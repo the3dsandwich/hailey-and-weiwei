@@ -39,8 +39,7 @@ jobs:
         if: ${{ github.actor != 'dependabot[bot]' && github.event_name != 'pull_request' }}
         uses: docker/build-push-action@v4
         with:
-          context: backend
-          file: Containerfile
+          file: backend/Containerfile
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
