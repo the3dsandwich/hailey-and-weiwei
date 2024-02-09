@@ -22,13 +22,12 @@ jobs:
       - name: Checkout GitHub Action
         uses: actions/checkout@v4
       - name: Docker meta
-        id: docker_meta
-        uses: docker/metadata-action@v4
+        id: meta
+        uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/maplibre/martin
+          images: the3dsandwich/hailey-and-weiwei-backend
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
-
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
@@ -37,10 +36,10 @@ jobs:
           password: ${{secrets.GITHUB_TOKEN}}
       - name: Push the Docker image
         if: ${{ github.actor != 'dependabot[bot]' && github.event_name != 'pull_request' }}
-        uses: docker/build-push-action@v5.1.0
+        uses: docker/build-push-action@v5
         with:
-          context: backend
-          file: backend/Containerfile
+          context: backend # this specifies the directory the Containerfile is in (relative to the root of the repo)
+          file: backend/Containerfile # but the file name/path still needs to be passed in separately
           push: true
           tags: ${{ steps.docker_meta.outputs.tags }}
           labels: ${{ steps.docker_meta.outputs.labels }}
