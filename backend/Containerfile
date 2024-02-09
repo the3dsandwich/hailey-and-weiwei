@@ -1,0 +1,16 @@
+# Start with a base image that has Java 17 installed.
+FROM maven:3.9.6-eclipse-temurin-21-alpine as builder
+ARG BASE_FOLDER=hailey-and-weiwei-backend
+WORKDIR /app
+COPY ${BASE_FOLDER}/pom.xml ./
+COPY ${BASE_FOLDER}/src ./src
+RUN mvn -f pom.xml clean package -DskipTests
+
+
+FROM eclipse-temurin:21-jre-alpine
+# Set the working directory in the container
+WORKDIR /app
+# Copy the built JAR file from the previous stage to the container
+COPY --from=builder /app/target/hailey-and-weiwei-backend-0.0.1-SNAPSHOT.jar .
+# Set the command to run the application
+CMD ["java", "-jar", "hailey-and-weiwei-backend-0.0.1-SNAPSHOT.jar"]
