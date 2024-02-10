@@ -11,7 +11,7 @@ services:
       PGDATA: /var/lib/postgresql/data
     labels:
       - com.centurylinklabs.watchtower.enable=true
-      - com.centurylinklabs.watchtower.scope=hailey-and-weiwei-backend
+      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
     volumes:
       - postgres-db-data:/var/lib/postgresql/data
   pgadmin:
@@ -25,7 +25,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-postgres}
     labels:
       - com.centurylinklabs.watchtower.enable=true
-      - com.centurylinklabs.watchtower.scope=hailey-and-weiwei-backend
+      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
     ports:
       - ${PGADMIN_PORT:-8080}:80
     volumes:
@@ -43,7 +43,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-password}
     labels:
       - com.centurylinklabs.watchtower.enable=true
-      - com.centurylinklabs.watchtower.scope=hailey-and-weiwei-backend
+      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
     ports:
       - ${BACKEND_PORT:-8081}:8081
   watchtower:
