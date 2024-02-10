@@ -59,7 +59,7 @@ services:
       - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_SCHEDULE=0 * * ? * *
       - WATCHTOWER_DEBUG=true
-      - WATCHTOWER_SCOPE=hailey-and-weiwei-backend
+      - WATCHTOWER_SCOPE=hailey_and_weiwei_backend
     restart: unless-stopped
 volumes:
   postgres-db-data:
