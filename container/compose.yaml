@@ -9,6 +9,9 @@ services:
       POSTGRES_USER: ${POSTGRES_USER:-postgres}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
       PGDATA: /var/lib/postgresql/data
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.centurylinklabs.watchtower.scope=hailey-and-weiwei-backend
     volumes:
       - postgres-db-data:/var/lib/postgresql/data
   pgadmin:
@@ -20,6 +23,9 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@example.com}
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-postgres}
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.centurylinklabs.watchtower.scope=hailey-and-weiwei-backend
     ports:
       - ${PGADMIN_PORT:-8080}:80
     volumes:
@@ -35,6 +41,9 @@ services:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL:-jdbc:postgresql://postgres-db:5432/postgres}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-postgres}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-password}
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.centurylinklabs.watchtower.scope=hailey-and-weiwei-backend
     ports:
       - ${BACKEND_PORT:-8081}:8081
   watchtower:
@@ -50,6 +59,7 @@ services:
       - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_SCHEDULE=0 * * ? * *
       - WATCHTOWER_DEBUG=true
+      - WATCHTOWER_SCOPE=hailey-and-weiwei-backend
     restart: unless-stopped
 volumes:
   postgres-db-data:
