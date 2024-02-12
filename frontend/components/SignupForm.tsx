@@ -79,11 +79,11 @@ const SignupForm = () => {
   return (
     <>
       <form className="flex flex-col" onSubmit={onSubmit}>
-        <div className="grid max-w-2xl gap-4 px-4 mx-auto lg:grid-cols-2 lg:px-6">
+        <div className="grid max-w-3xl gap-4 px-4 mx-auto lg:grid-cols-2 lg:px-6">
           <div className="space-y-4 lg:col-span-2">
             <div className="space-y-2">
               <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl/none">
-                RSVP to our Wedding Event
+                {"RSVP to Hailey and Wei-Wei's Wedding Event"}
               </h1>
               <p className="text-gray-500 dark:text-gray-400">
                 Enter your information to RSVP
@@ -113,16 +113,6 @@ const SignupForm = () => {
                 />
               </div>
             </div>
-            <fieldset className="space-y-2">
-              <legend className="text-lg font-medium">
-                Meal preferences (check all that apply)
-              </legend>
-              <div className="space-y-2">
-                <Checkbox id="vegan" /> vegan
-                <Checkbox id="vegetarian" /> vegetarian
-                <Checkbox id="gluten-free" /> gluten-free
-              </div>
-            </fieldset>
             <div className="space-y-2">
               <Label htmlFor="comments">
                 Additional comments or special requests

@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Noto_Serif_TC } from "next/font/google";
 import "./globals.css";
 import TopNav from "@/components/TopNav";
 
-const inter = Inter({ subsets: ["latin"] });
+const font = Noto_Serif_TC({
+  subsets: ["latin"],
+  weight: "400",
+});
 
 export const metadata: Metadata = {
   title: "Hailey and Wei-Wei's Wedding",
@@ -17,7 +20,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>
+      <body
+        className={`${font.className} antialiased border-r-gray-50 h-screen font-serif`}
+      >
         <TopNav />
         {children}
       </body>
