@@ -48,7 +48,8 @@ const SignupForm = () => {
         ).checked,
       };
 
-      const endpoint = "http://api.the3dsandwich.com:12081/signup";
+      const endpoint =
+        "https://haileyandweiweibackend.the3dsandwich.com/signup";
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {
@@ -64,7 +65,7 @@ const SignupForm = () => {
       // Handle response if necessary
       const data = await response.json();
       // ...
-      console.log({ endpoint: endpoint, ...data });
+      console.log({ endpoint, ...data });
       setError(data.message);
     } catch (error: any) {
       // Capture the error message to display to the user
