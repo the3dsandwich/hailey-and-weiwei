@@ -4,7 +4,6 @@ import React from "react";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Select } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -49,8 +48,12 @@ const SignupForm = () => {
         ).checked,
       };
 
-      const response = await fetch("/api/submit", {
+      const endpoint = "http://api.the3dsandwich.com:12081/signup";
+      const response = await fetch(endpoint, {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(formJSON),
       });
 
@@ -61,7 +64,7 @@ const SignupForm = () => {
       // Handle response if necessary
       const data = await response.json();
       // ...
-      console.log(data);
+      console.log({ endpoint: endpoint, ...data });
       setError(data.message);
     } catch (error: any) {
       // Capture the error message to display to the user
