@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <main className="flex flex-col justify-center align-middle min-h-screen pt-20 pb-40">
       <Image
-        src="/sample-large-portrait.png"
+        src="./sample-large-portrait.png"
         width={700}
         height={475}
         sizes="100vw"
