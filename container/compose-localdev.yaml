@@ -1,0 +1,38 @@
+version: "3.7"
+services:
+  postgres-db:
+    image: postgres:13.2-alpine
+    container_name: hailey-and-weiwei-backend-postgresql
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-postgres}
+      POSTGRES_USER: ${POSTGRES_USER:-postgres}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      PGDATA: /var/lib/postgresql/data
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
+    volumes:
+      - postgres-db-data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: hailey-and-weiwei-backend-pgadmin
+    depends_on:
+      - postgres-db
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-admin@example.com}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-postgres}
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
+    ports:
+      - ${PGADMIN_PORT:-8080}:80
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+    links:
+      - postgres-db:pgsql-server
+
+volumes:
+  postgres-db-data:
+  pgadmin-data:
