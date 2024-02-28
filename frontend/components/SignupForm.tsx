@@ -4,49 +4,37 @@ import React from "react";
 
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { FormEvent, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "./ui/dialog";
+import { toast } from "sonner";
+import { Toaster } from "./ui/sonner";
 
 const SignupForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsLoading(true);
-    setError(null); // Clear previous errors when a new request starts
 
     try {
       const formData = new FormData(event.currentTarget);
       const formJSON = {
-        name: (
-          event.currentTarget.elements.namedItem("name") as HTMLInputElement
-        ).value,
-        email: (
-          event.currentTarget.elements.namedItem("email") as HTMLInputElement
-        ).value,
-        phone: (
-          event.currentTarget.elements.namedItem("phone") as HTMLInputElement
-        ).value,
-        comments: (
-          event.currentTarget.elements.namedItem("comments") as HTMLInputElement
-        ).value,
-        vegan: (
-          event.currentTarget.elements.namedItem("vegan") as HTMLInputElement
-        ).checked,
-        vegetarian: (
-          event.currentTarget.elements.namedItem(
-            "vegetarian"
-          ) as HTMLInputElement
-        ).checked,
-        glutenFree: (
-          event.currentTarget.elements.namedItem(
-            "gluten-free"
-          ) as HTMLInputElement
-        ).checked,
+        name: formData.get("name")?.toString(),
+        email: formData.get("email")?.toString(),
+        phone: formData.get("phone")?.toString(),
+        comments: formData.get("comments")?.toString(),
       };
+      console.log(formJSON);
 
       const endpoint =
         "https://haileyandweiweibackend.the3dsandwich.com/signup";
@@ -65,12 +53,16 @@ const SignupForm = () => {
       // Handle response if necessary
       const data = await response.json();
       // ...
-      console.log({ endpoint, ...data });
-      setError(data.message);
+      console.trace({ endpoint, ...data });
+      toast("RSVP success!", {
+        description: "Check your email, something should be there in a bit",
+      });
     } catch (error: any) {
       // Capture the error message to display to the user
-      setError(error.message);
-      console.error(error);
+      console.error(error.message);
+      toast("RSVP failed", {
+        description: `${error.message}`,
+      });
     } finally {
       setIsLoading(false);
     }
@@ -78,56 +70,63 @@ const SignupForm = () => {
 
   return (
     <>
-      <form className="flex flex-col" onSubmit={onSubmit}>
-        <div className="grid max-w-3xl gap-4 px-4 mx-auto lg:grid-cols-2 lg:px-6">
-          <div className="space-y-4 lg:col-span-2">
-            <div className="space-y-2">
-              <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl/none">
-                {"RSVP to Hailey and Wei-Wei's Wedding Event"}
-              </h1>
-              <p className="text-gray-500 dark:text-gray-400">
-                Enter your information to RSVP
-              </p>
-            </div>
-            <div className="space-y-2">
-              <Label htmlFor="name">Name</Label>
-              <Input id="name" placeholder="Enter your name" required />
-            </div>
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              <div className="space-y-2">
+      <Toaster />
+      <Dialog>
+        <DialogTrigger asChild>
+          <Button variant="outline">Unlock guest details</Button>
+        </DialogTrigger>
+        <DialogContent className="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>RSVP to Hailey and Wei-Wei&apos;s Wedding</DialogTitle>
+            <DialogDescription>Thanks for joining us!</DialogDescription>
+          </DialogHeader>
+
+          <form onSubmit={onSubmit}>
+            <div className="grid gap-4 py-4">
+              <div className="grid grid-cols-6 items-center gap-4">
+                <Label htmlFor="name">Name</Label>
+                <Input
+                  id="name"
+                  placeholder="Enter your name"
+                  className="col-span-5"
+                  required
+                />
+              </div>
+              <div className="grid grid-cols-6 items-center gap-4">
                 <Label htmlFor="email">Email</Label>
                 <Input
                   id="email"
                   placeholder="Enter your email"
+                  className="col-span-5"
                   required
                   type="email"
                 />
               </div>
-              <div className="space-y-2">
+              <div className="grid grid-cols-6 items-center gap-4">
                 <Label htmlFor="phone">Phone</Label>
                 <Input
                   id="phone"
                   placeholder="Enter your phone"
+                  className="col-span-5"
                   required
                   type="tel"
                 />
               </div>
+              <div className="grid gap-4">
+                <Label htmlFor="comments">
+                  Additional comments or special requests
+                </Label>
+                <Textarea id="comments" placeholder="Enter your comments" />
+              </div>
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="comments">
-                Additional comments or special requests
-              </Label>
-              <Textarea
-                id="comments"
-                placeholder="Enter your comments"
-                required
-              />
-            </div>
-            <Button type="submit">RSVP</Button>
-          </div>
-        </div>
-      </form>
-      {error && <div className="text-red-500">{error}</div>}
+            <DialogFooter>
+              <Button type="submit" disabled={isLoading}>
+                Sign me up!
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
     </>
   );
 };

@@ -5,7 +5,7 @@ import TopNav from "@/components/TopNav";
 
 const font = Noto_Serif_TC({
   subsets: ["latin"],
-  weight: "400",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
