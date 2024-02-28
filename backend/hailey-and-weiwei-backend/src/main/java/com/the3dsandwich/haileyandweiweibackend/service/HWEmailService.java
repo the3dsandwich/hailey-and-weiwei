@@ -1,38 +1,35 @@
-package com.the3dsandwich.haileyandweiweibackend.controller;
+package com.the3dsandwich.haileyandweiweibackend.service;/*
+ * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
+ */
 
 import com.resend.Resend;
 import com.resend.core.exception.ResendException;
 import com.resend.services.emails.model.SendEmailRequest;
 import com.resend.services.emails.model.SendEmailResponse;
-import com.the3dsandwich.haileyandweiweibackend.controller.bean.SendEmailRq;
-import com.the3dsandwich.haileyandweiweibackend.controller.bean.SendEmailRs;
-import com.the3dsandwich.haileyandweiweibackend.service.HWEmailService;
+import com.the3dsandwich.haileyandweiweibackend.service.bean.SendEmailInput;
+import com.the3dsandwich.haileyandweiweibackend.service.bean.SendEmailOutput;
 import com.the3dsandwich.haileyandweiweibackend.utils.HWJsonUtils;
 import com.the3dsandwich.haileyandweiweibackend.utils.HWStringUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
 /*
  * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
  */
 @Slf4j
-@RestController
-public class POCController {
+@Service
+public class HWEmailService {
 
-    @Autowired
-    private HWEmailService hwEmailService;
+    @Value("${email.resend_api_key}")
+    private String resendApiKey;
 
-    @PostMapping("/poc/debugInjectedResendApiKey")
     public void debugInjectedResendApiKey() {
-        hwEmailService.debugInjectedResendApiKey();
+        log.debug("injected resendApiKey is {}", resendApiKey);
     }
 
-    @PostMapping("/poc/sendEmail")
-    public SendEmailRs sendEmail(@RequestBody SendEmailRq request) {
-        Resend resend = new Resend(request.getResendApiKey());
+    public SendEmailOutput sendEmail(SendEmailInput request) {
+        Resend resend = new Resend(resendApiKey);
 
         SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
                                                             .from(HWStringUtils.join(request.getEmailFromName(), " <", request.getEmailFromAddress(), ">"))
@@ -52,24 +49,24 @@ public class POCController {
                 log.debug("send email success:\n{}", HWJsonUtils.toPrettyJson(data));
             }
 
-            return SendEmailRs.builder()
-                              .errorMessage(HWStringUtils.EMPTY)
-                              .status("SUCCESS")
-                              .build();
+            return SendEmailOutput.builder()
+                                  .errorMessage(HWStringUtils.EMPTY)
+                                  .status("SUCCESS")
+                                  .build();
         } catch (ResendException e) {
             log.error("send email failed (resend): {}", e.getMessage());
             e.printStackTrace();
-            return SendEmailRs.builder()
-                              .errorMessage(e.getMessage())
-                              .status("FAIL")
-                              .build();
+            return SendEmailOutput.builder()
+                                  .errorMessage(e.getMessage())
+                                  .status("FAIL")
+                                  .build();
         } catch (RuntimeException e) {
             log.error("send email failed: {}", e.getMessage());
             e.printStackTrace();
-            return SendEmailRs.builder()
-                              .errorMessage(e.getMessage())
-                              .status("FAIL")
-                              .build();
+            return SendEmailOutput.builder()
+                                  .errorMessage(e.getMessage())
+                                  .status("FAIL")
+                                  .build();
         }
     }
 

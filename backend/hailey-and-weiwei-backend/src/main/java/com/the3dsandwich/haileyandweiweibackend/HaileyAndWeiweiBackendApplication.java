@@ -29,7 +29,7 @@ public class HaileyAndWeiweiBackendApplication {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(@NonNull CorsRegistry registry) {
-                log.info("allow origin: {}", allowedOrigin);
+                log.debug("allow origin: {}", allowedOrigin);
                 registry.addMapping("/**")
                         .allowedOrigins(allowedOrigin);
             }
