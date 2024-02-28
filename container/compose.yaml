@@ -41,7 +41,7 @@ services:
       SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL:-jdbc:postgresql://postgres-db:5432/postgres}
       SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-postgres}
       SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-password}
-      RESEND_API_KEY: ${RESEND_API_KEY:}
+      RESEND_API_KEY: ${RESEND_API_KEY:-changeme}
     labels:
       - com.centurylinklabs.watchtower.enable=true
       - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
