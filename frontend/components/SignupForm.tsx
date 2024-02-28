@@ -6,7 +6,16 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { FormEvent, useState } from "react";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -17,24 +26,36 @@ import {
   DialogTrigger,
 } from "./ui/dialog";
 import { toast } from "sonner";
-import { Toaster } from "./ui/sonner";
+import { Toaster } from "@/components/ui/sonner";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+
+const formSchema = z.object({
+  name: z.string(),
+  email: z.string().email(),
+  phone: z.string(),
+  comments: z.string(),
+});
 
 const SignupForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  async function onSubmit(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      comments: "",
+    },
+  });
+
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
     setIsLoading(true);
 
     try {
-      const formData = new FormData(event.currentTarget);
-      const formJSON = {
-        name: formData.get("name")?.toString(),
-        email: formData.get("email")?.toString(),
-        phone: formData.get("phone")?.toString(),
-        comments: formData.get("comments")?.toString(),
-      };
-      console.log(formJSON);
+      console.log(values);
 
       const endpoint =
         "https://haileyandweiweibackend.the3dsandwich.com/signup";
@@ -43,7 +64,7 @@ const SignupForm = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formJSON),
+        body: JSON.stringify(values),
       });
 
       if (!response.ok) {
@@ -66,7 +87,7 @@ const SignupForm = () => {
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <>
@@ -81,50 +102,86 @@ const SignupForm = () => {
             <DialogDescription>Thanks for joining us!</DialogDescription>
           </DialogHeader>
 
-          <form onSubmit={onSubmit}>
-            <div className="grid gap-4 py-4">
-              <div className="grid grid-cols-6 items-center gap-4">
-                <Label htmlFor="name">Name</Label>
-                <Input
-                  id="name"
-                  placeholder="Enter your name"
-                  className="col-span-5"
-                  required
-                />
-              </div>
-              <div className="grid grid-cols-6 items-center gap-4">
-                <Label htmlFor="email">Email</Label>
-                <Input
-                  id="email"
-                  placeholder="Enter your email"
-                  className="col-span-5"
-                  required
-                  type="email"
-                />
-              </div>
-              <div className="grid grid-cols-6 items-center gap-4">
-                <Label htmlFor="phone">Phone</Label>
-                <Input
-                  id="phone"
-                  placeholder="Enter your phone"
-                  className="col-span-5"
-                  required
-                  type="tel"
-                />
-              </div>
-              <div className="grid gap-4">
-                <Label htmlFor="comments">
-                  Additional comments or special requests
-                </Label>
-                <Textarea id="comments" placeholder="Enter your comments" />
-              </div>
-            </div>
-            <DialogFooter>
-              <Button type="submit" disabled={isLoading}>
-                Sign me up!
-              </Button>
-            </DialogFooter>
-          </form>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(onSubmit)}
+              className="grid gap-4 py-4"
+            >
+              <FormField
+                control={form.control}
+                name="name"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Name</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your name"
+                        required
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="email"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Email</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your email"
+                        required
+                        type="email"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="phone"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>Phone</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="Enter your phone"
+                        required
+                        type="tel"
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="comments"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      Additional comments or special requests
+                    </FormLabel>
+                    <FormControl>
+                      <Input placeholder="Enter your comments" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <DialogFooter>
+                <Button type="submit" disabled={isLoading}>
+                  Sign me up!
+                </Button>
+              </DialogFooter>
+            </form>
+          </Form>
         </DialogContent>
       </Dialog>
     </>
