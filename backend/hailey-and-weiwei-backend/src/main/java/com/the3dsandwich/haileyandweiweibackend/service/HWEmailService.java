@@ -28,23 +28,21 @@ public class HWEmailService {
         log.debug("injected resendApiKey is {}", resendApiKey);
     }
 
-    public SendEmailOutput sendEmail(SendEmailInput request) {
-        Resend resend = new Resend(resendApiKey);
-
+    public SendEmailOutput sendEmail(SendEmailInput input) {
         SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
-                                                            .from(HWStringUtils.join(request.getEmailFromName(), " <", request.getEmailFromAddress(), ">"))
-                                                            .to(request.getEmailToAddress())
-                                                            .subject(request.getEmailSubject())
-                                                            .html(request.getEmailContentHtml())
+                                                            .from(HWStringUtils.join(input.getEmailFromName(), " <", input.getEmailFromAddress(), ">"))
+                                                            .to(input.getEmailToAddress())
+                                                            .subject(input.getEmailSubject())
+                                                            .html(input.getEmailContentHtml())
                                                             .build();
 
         if (log.isDebugEnabled()) {
-            log.debug("sending email:\n{}", HWJsonUtils.toPrettyJson(request));
+            log.debug("sending email:\n{}", HWJsonUtils.toPrettyJson(input));
         }
 
         try {
-            SendEmailResponse data = resend.emails()
-                                           .send(sendEmailRequest);
+            SendEmailResponse data = new Resend(resendApiKey).emails()
+                                                             .send(sendEmailRequest);
             if (log.isDebugEnabled()) {
                 log.debug("send email success:\n{}", HWJsonUtils.toPrettyJson(data));
             }
@@ -68,6 +66,15 @@ public class HWEmailService {
                                   .status("FAIL")
                                   .build();
         }
+    }
+
+    private SendEmailRequest buildSendEmailRequest(SendEmailInput input) {
+        return SendEmailRequest.builder()
+                               .from(HWStringUtils.format("{} <{}>", input.getEmailFromName(), input.getEmailFromAddress()))
+                               .to(input.getEmailToAddress())
+                               .subject(input.getEmailSubject())
+                               .html(input.getEmailContentHtml())
+                               .build();
     }
 
 }
