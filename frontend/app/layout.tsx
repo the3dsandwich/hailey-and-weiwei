@@ -1,7 +1,7 @@
+import TopNav from "@/components/TopNav";
 import type { Metadata } from "next";
 import { Noto_Serif_TC } from "next/font/google";
 import "./globals.css";
-import TopNav from "@/components/TopNav";
 
 const font = Noto_Serif_TC({
   subsets: ["latin"],
