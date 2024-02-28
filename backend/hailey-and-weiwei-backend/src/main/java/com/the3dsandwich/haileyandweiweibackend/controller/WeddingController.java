@@ -34,19 +34,10 @@ public class WeddingController {
                                                       .emailFromAddress("weiwei@haileyandweiweiwedding.the3dsandwich.com")
                                                       .emailToAddress(request.getEmail())
                                                       .emailContentHtml(HWStringUtils.format("""
-                                                              <!DOCTYPE html>
-                                                              <html lang="en">
-                                                                <head>
-                                                                  <meta charset="UTF-8" />
-                                                                  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-                                                                  <title>Hailey and Wei-Wei's Wedding</title>
-                                                                </head>
                                                                 <body>
-                                                                  <h1>Hailey and Wei-Wei's Wedding</h1>
-                                                                  <p>Thanks for signing up to our wedding, {}!</p>
+                                                                  <h1>Thanks for signing up to our wedding, {}!</h1>
                                                                   <p>Here's a copy of your comment for reference: {}</p>
                                                                 </body>
-                                                              </html>
                                                               """, request.getName(), request.getComments()))
                                                       .build();
         log.debug("email content:\n{}", sendEmailInput.getEmailContentHtml());
