@@ -31,7 +31,7 @@ public class WeddingController {
         SendEmailInput sendEmailInput = SendEmailInput.builder()
                                                       .emailSubject("Hailey and Wei-Wei's Wedding")
                                                       .emailFromName("Wei-Wei")
-                                                      .emailFromAddress("weiwei@haileyandweiweiwedding.the3dsandwich.com")
+                                                      .emailFromAddress("poctest@haileyandweiweiwedding.the3dsandwich.com")
                                                       .emailToAddress(request.getEmail())
                                                       .emailContentHtml(HWStringUtils.format("""
                                                                 <body>
