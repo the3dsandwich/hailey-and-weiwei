@@ -29,12 +29,7 @@ public class HWEmailService {
     }
 
     public SendEmailOutput sendEmail(SendEmailInput input) {
-        SendEmailRequest sendEmailRequest = SendEmailRequest.builder()
-                                                            .from(HWStringUtils.join(input.getEmailFromName(), " <", input.getEmailFromAddress(), ">"))
-                                                            .to(input.getEmailToAddress())
-                                                            .subject(input.getEmailSubject())
-                                                            .html(input.getEmailContentHtml())
-                                                            .build();
+        SendEmailRequest sendEmailRequest = buildSendEmailRequest(input);
 
         if (log.isDebugEnabled()) {
             log.debug("sending email:\n{}", HWJsonUtils.toPrettyJson(input));

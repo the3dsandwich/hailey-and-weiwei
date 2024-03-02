@@ -2,7 +2,9 @@ package com.the3dsandwich.haileyandweiweibackend.controller;
 
 import com.the3dsandwich.haileyandweiweibackend.controller.bean.SignupWeddingRq;
 import com.the3dsandwich.haileyandweiweibackend.controller.bean.SignupWeddingRs;
+import com.the3dsandwich.haileyandweiweibackend.service.GuestService;
 import com.the3dsandwich.haileyandweiweibackend.service.HWEmailService;
+import com.the3dsandwich.haileyandweiweibackend.service.bean.GuestBo;
 import com.the3dsandwich.haileyandweiweibackend.service.bean.SendEmailInput;
 import com.the3dsandwich.haileyandweiweibackend.utils.HWStringUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +22,8 @@ public class WeddingController {
 
     @Autowired
     private HWEmailService hwEmailService;
+    @Autowired
+    private GuestService guestService;
 
     @PostMapping("/signup")
     public SignupWeddingRs signupWedding(@RequestBody SignupWeddingRq request) {
@@ -37,6 +41,12 @@ public class WeddingController {
                                                               """, request.getName(), request.getComments()))
                                                       .build();
         log.debug("email content:\n{}", sendEmailInput.getEmailContentHtml());
+        guestService.addGuestEntry(GuestBo.builder()
+                                          .name(request.getName())
+                                          .email(request.getEmail())
+                                          .phone(request.getPhone())
+                                          .comments(request.getComments())
+                                          .build());
         hwEmailService.sendEmail(sendEmailInput);
         return SignupWeddingRs.builder()
                               .message(responseMessage)
