@@ -6,6 +6,7 @@ import com.resend.services.emails.model.SendEmailRequest;
 import com.resend.services.emails.model.SendEmailResponse;
 import com.the3dsandwich.haileyandweiweibackend.controller.bean.SendEmailRq;
 import com.the3dsandwich.haileyandweiweibackend.controller.bean.SendEmailRs;
+import com.the3dsandwich.haileyandweiweibackend.controller.bean.SignupWeddingRs;
 import com.the3dsandwich.haileyandweiweibackend.service.GuestService;
 import com.the3dsandwich.haileyandweiweibackend.service.HWEmailService;
 import com.the3dsandwich.haileyandweiweibackend.service.bean.GuestBo;
@@ -19,6 +20,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 /*
@@ -59,6 +62,17 @@ public class POCController {
                                               .comments(HWStringUtils.format("Test comment\n{}\n{}", uuid, i))
                                               .build());
         }
+    }
+
+    @GetMapping("/poc/pocList")
+    public List<SignupWeddingRs> pocList() {
+        List<SignupWeddingRs> response = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            response.add(SignupWeddingRs.builder()
+                                        .message(HWStringUtils.format("{}", i))
+                                        .build());
+        }
+        return response;
     }
 
     @PostMapping("/poc/sendEmail")
