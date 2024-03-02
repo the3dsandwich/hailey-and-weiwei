@@ -1,0 +1,22 @@
+#
+# Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
+#
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: password
+
+server:
+  port: 8081
+
+wedding-controller:
+  allow-origin: ${ALLOW_ORIGIN:https://the3dsandwich.github.io}
+
+logging:
+  level:
+    org.springframework.web.filter.CommonsRequestLoggingFilter: TRACE
+    com.the3dsandwich: TRACE
+
+email:
+  resend_api_key: ${RESEND_API_KEY:}
