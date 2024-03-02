@@ -8,10 +8,16 @@ const font = Noto_Serif_TC({
   weight: ["400", "700"],
 });
 
-export const metadata: Metadata = {
-  title: "Hailey and Wei-Wei's Wedding",
-  description: "Everything related",
-};
+export const metadata: Metadata =
+  process.env.NODE_ENV == "development"
+    ? {
+        title: "[dev] Hailey and Wei-Wei's Wedding",
+        description: "development server for wedding website",
+      }
+    : {
+        title: "Hailey and Wei-Wei's Wedding",
+        description: "Everything related",
+      };
 
 export default function RootLayout({
   children,
