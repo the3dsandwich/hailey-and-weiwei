@@ -1,4 +1,4 @@
-# Start with a base image that has Java 17 installed.
+# Start with a base image that has Java 21 installed.
 FROM maven:3.9.6-eclipse-temurin-21-alpine as builder
 ARG BASE_FOLDER=hailey-and-weiwei-backend
 WORKDIR /app
