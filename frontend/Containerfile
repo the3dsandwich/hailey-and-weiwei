@@ -34,6 +34,12 @@ RUN \
     else echo "Lockfile not found." && exit 1; \
     fi
 
+FROM base AS sanity-check
+WORKDIR /app
+COPY --from=builder /app .
+
+RUN tree
+
 # Production image, copy all the files and run next
 FROM base AS runner
 WORKDIR /app
