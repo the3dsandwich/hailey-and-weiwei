@@ -1,10 +1,11 @@
 import SignupForm from "@/components/SignupForm";
 import Image from "next/image";
 import centerPortrait from "./images/sample-large-portrait.jpg";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center min-h-screen pt-28 pb-40 w-full">
+    <section className="flex flex-col items-center">
       <div className="w-full md:w-1/3 aspect-[2/3] relative">
         <Image
           src={centerPortrait}
@@ -17,6 +18,7 @@ export default function Home() {
       <div className="mt-8">
         <SignupForm />
       </div>
-    </main>
+      <Link href={"/guest-details"}>guest details</Link>
+    </section>
   );
 }

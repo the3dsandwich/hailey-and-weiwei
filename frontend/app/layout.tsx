@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`${font.className} antialiased border-r-gray-50 h-screen font-serif`}
       >
         <TopNav />
-        {children}
+        <main className="pt-28 pb-40 min-h-screen w-full">{children}</main>
       </body>
     </html>
   );
