@@ -60,8 +60,11 @@ const SignupForm = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
+          "Access-Control-Allow-Headers":
+            process.env.NODE_ENV == "development"
+              ? "http://localhost:8081"
+              : "https://haileyandweiweibackend.the3dsandwich.com",
         },
-        mode: "no-cors",
         body: JSON.stringify(values),
       });
 
