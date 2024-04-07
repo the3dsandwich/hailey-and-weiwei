@@ -1,4 +1,4 @@
-name: "[deployment] GitHub Container Registry (backend)"
+name: "[backend] GitHub Container Registry"
 
 on:
   push:
