@@ -1,6 +1,4 @@
-package com.the3dsandwich.haileyandweiweibackend.service.bean;/*
- * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
- */
+package com.the3dsandwich.haileyandweiweibackend.service.bean;
 
 import lombok.Builder;
 import lombok.Data;

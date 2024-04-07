@@ -1,6 +1,4 @@
-package com.the3dsandwich.haileyandweiweibackend.service;/*
- * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
- */
+package com.the3dsandwich.haileyandweiweibackend.service;
 
 import com.resend.Resend;
 import com.resend.core.exception.ResendException;

@@ -1,6 +1,4 @@
-package com.the3dsandwich.haileyandweiweibackend.controller;/*
- * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
- */
+package com.the3dsandwich.haileyandweiweibackend.controller;
 
 import com.the3dsandwich.haileyandweiweibackend.controller.bean.ListGuestsRs;
 import com.the3dsandwich.haileyandweiweibackend.controller.bean.ListGuestsRsGuest;
@@ -27,12 +25,12 @@ public class GuestController {
                                                   .getGuestList()
                                                   .stream()
                                                   .map(bo -> ListGuestsRsGuest.builder()
+                                                                              .id(bo.getId())
                                                                               .name(bo.getName())
                                                                               .phone(bo.getPhone())
                                                                               .email(bo.getEmail())
                                                                               .comments(bo.getComments())
-                                                                              .createdAt(bo.getCreatedAt())
-                                                                              .updatedAt(bo.getUpdatedAt())
+                                                                              .tags(bo.getTags())
                                                                               .build())
                                                   .toList())
                            .build();

@@ -1,11 +1,9 @@
-package com.the3dsandwich.haileyandweiweibackend.controller.bean;/*
- * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
- */
+package com.the3dsandwich.haileyandweiweibackend.controller.bean;
 
 import lombok.Builder;
 import lombok.Data;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 /*
  * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
@@ -14,11 +12,11 @@ import java.time.LocalDateTime;
 @Builder
 public class ListGuestsRsGuest {
 
+    private long id;
     private String name;
     private String email;
     private String phone;
     private String comments;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
+    private List<String> tags;
 
 }

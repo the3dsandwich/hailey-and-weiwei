@@ -1,6 +1,4 @@
-package com.the3dsandwich.haileyandweiweibackend.service.data.entity;/*
- * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
- */
+package com.the3dsandwich.haileyandweiweibackend.service.data.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -38,6 +36,9 @@ public class GuestEntity {
 
     @Column(name = "comments", nullable = false)
     private String comments;
+
+    @Column(name = "tags")
+    private String tags;
 
     @Column(name = "created_at")
     @CreationTimestamp

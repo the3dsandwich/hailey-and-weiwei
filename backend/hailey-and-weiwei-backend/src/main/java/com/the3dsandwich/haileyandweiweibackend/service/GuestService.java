@@ -5,6 +5,7 @@ import com.the3dsandwich.haileyandweiweibackend.service.bean.ListGuestsOutput;
 import com.the3dsandwich.haileyandweiweibackend.service.data.GuestRepository;
 import com.the3dsandwich.haileyandweiweibackend.service.data.entity.GuestEntity;
 import com.the3dsandwich.haileyandweiweibackend.utils.HWJsonUtils;
+import com.the3dsandwich.haileyandweiweibackend.utils.HWStringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,7 +39,7 @@ public class GuestService {
 
     public void pocGetEntities() {
         List<GuestEntity> guestEntityList = guestRepository.findAll();
-        log.debug("guests:\n{}", HWJsonUtils.toPrettyJson(guestEntityList));
+        log.info("guests:\n{}", HWJsonUtils.toPrettyJson(guestEntityList));
     }
 
     private GuestBo toBo(GuestEntity entity) {
@@ -48,8 +49,7 @@ public class GuestService {
                       .email(entity.getEmail())
                       .phone(entity.getPhone())
                       .comments(entity.getComments())
-                      .createdAt(entity.getCreatedAt())
-                      .updatedAt(entity.getUpdatedAt())
+                      .tags(HWStringUtils.commaSplit(entity.getTags()))
                       .build();
     }
 
@@ -60,8 +60,7 @@ public class GuestService {
                           .email(bo.getEmail())
                           .phone(bo.getPhone())
                           .comments(bo.getComments())
-                          .createdAt(bo.getCreatedAt())
-                          .updatedAt(bo.getUpdatedAt())
+                          .tags(HWStringUtils.commaJoin(bo.getTags()))
                           .build();
     }
 
