@@ -1,4 +1,4 @@
-name: "[deployment] GitHub Container Registry"
+name: "[deployment] GitHub Container Registry (backend)"
 
 on:
   push:
@@ -27,7 +27,7 @@ jobs:
           images: ghcr.io/the3dsandwich/hailey-and-weiwei-backend
           flavor: |
             latest=false
-            prefix=backend
+            prefix=backend-
             suffix=
           tags: |
             type=ref,event=branch
