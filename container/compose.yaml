@@ -47,6 +47,16 @@ services:
       - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
     ports:
       - ${BACKEND_PORT:-8081}:8081
+  frontend:
+    image: ghcr.io/the3dsandwich/hailey-and-weiwei-frontend:dev
+    container_name: hailey-and-weiwei-frontend
+    depends_on:
+      - backend
+    labels:
+      - com.centurylinklabs.watchtower.enable=true
+      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
+    ports:
+      - ${FRONTEND_PORT:-8082}:3000
   watchtower:
     image: containrrr/watchtower
     container_name: hailey-and-weiwei-backend-watchtowerr
