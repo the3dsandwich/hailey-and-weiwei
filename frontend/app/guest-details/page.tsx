@@ -3,7 +3,10 @@ import React from "react";
 
 const GuestDetails = async () => {
   const fetchGuestList = async () => {
-    const endpoint = "http://localhost:8081/listGuests";
+    const endpoint =
+      process.env.NODE_ENV == "development"
+        ? "http://localhost:8081/listGuests"
+        : "https://haileyandweiweibackend.the3dsandwich.com/listGuests";
     const response = await fetch(endpoint, {
       method: "GET",
       cache: "no-store",

@@ -52,7 +52,10 @@ const SignupForm = () => {
     try {
       console.log(values);
 
-      const endpoint = "http://localhost:8081/signup";
+      const endpoint =
+        process.env.NODE_ENV == "development"
+          ? "http://localhost:8081/signup"
+          : "https://haileyandweiweibackend.the3dsandwich.com/signup";
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {
