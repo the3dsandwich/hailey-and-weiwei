@@ -14,7 +14,7 @@ server:
   port: 8081
 
 wedding-controller:
-  allow-origin: ${ALLOW_ORIGIN:https://the3dsandwich.github.io}
+  allow-origin: ${ALLOW_ORIGIN:https://haileyandweiweiwedding.the3dsandwich.com}
 
 logging:
   level:
