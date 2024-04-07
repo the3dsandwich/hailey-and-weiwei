@@ -2,7 +2,7 @@ version: "3.7"
 services:
   postgres-db:
     image: postgres:13.2-alpine
-    container_name: hailey-and-weiwei-backend-postgresql
+    container_name: hailey-and-weiwei-postgresql
     restart: unless-stopped
     environment:
       POSTGRES_DB: ${POSTGRES_DB:-postgres}
@@ -11,12 +11,12 @@ services:
       PGDATA: /var/lib/postgresql/data
     labels:
       - com.centurylinklabs.watchtower.enable=true
-      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
+      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei
     volumes:
       - postgres-db-data:/var/lib/postgresql/data
   pgadmin:
     image: dpage/pgadmin4:latest
-    container_name: hailey-and-weiwei-backend-pgadmin
+    container_name: hailey-and-weiwei-pgadmin
     depends_on:
       - postgres-db
     restart: unless-stopped
@@ -25,7 +25,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-postgres}
     labels:
       - com.centurylinklabs.watchtower.enable=true
-      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
+      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei
     ports:
       - ${PGADMIN_PORT:-8080}:80
     volumes:
@@ -45,7 +45,7 @@ services:
       ALLOW_ORIGIN: ${ALLOW_ORIGIN:-https://haileyandweiweiwedding.the3dsandwich.com}
     labels:
       - com.centurylinklabs.watchtower.enable=true
-      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
+      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei
     ports:
       - ${BACKEND_PORT:-8081}:8081
   frontend:
@@ -55,12 +55,12 @@ services:
       - backend
     labels:
       - com.centurylinklabs.watchtower.enable=true
-      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei_backend
+      - com.centurylinklabs.watchtower.scope=hailey_and_weiwei
     ports:
       - ${FRONTEND_PORT:-8082}:3000
   watchtower:
     image: containrrr/watchtower
-    container_name: hailey-and-weiwei-backend-watchtowerr
+    container_name: hailey-and-weiwei-watchtowerr
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
@@ -71,7 +71,7 @@ services:
       - WATCHTOWER_LABEL_ENABLE=true
       - WATCHTOWER_SCHEDULE=0 * * ? * *
       - WATCHTOWER_DEBUG=true
-      - WATCHTOWER_SCOPE=hailey_and_weiwei_backend
+      - WATCHTOWER_SCOPE=hailey_and_weiwei
     restart: unless-stopped
 volumes:
   postgres-db-data:
