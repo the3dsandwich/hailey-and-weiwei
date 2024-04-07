@@ -25,6 +25,10 @@ jobs:
         uses: docker/metadata-action@v5
         with:
           images: ghcr.io/the3dsandwich/hailey-and-weiwei-backend
+          flavor: |
+            latest=false
+            prefix=backend
+            suffix=
           tags: |
             type=ref,event=branch
             type=ref,event=pr
