@@ -11,4 +11,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GuestRepository extends JpaRepository<GuestEntity, Long>, JpaSpecificationExecutor<GuestEntity> {
 
+    boolean existsByEmail(String email);
+
 }

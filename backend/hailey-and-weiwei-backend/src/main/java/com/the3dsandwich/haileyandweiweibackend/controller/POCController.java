@@ -55,12 +55,12 @@ public class POCController {
     public void pocInsertDb() {
         UUID uuid = UUID.randomUUID();
         for (int i = 0; i < 5; i++) {
-            guestService.addGuestEntry(GuestBo.builder()
-                                              .name(HWStringUtils.format("Test Name {} {}", uuid, i))
-                                              .email(HWStringUtils.format("{}.{}@gmail.com", uuid, i))
-                                              .phone(HWStringUtils.format("{}{}", uuid, i))
-                                              .comments(HWStringUtils.format("Test comment\n{}\n{}", uuid, i))
-                                              .build());
+            guestService.addGuest(GuestBo.builder()
+                                         .name(HWStringUtils.format("Test Name {} {}", uuid, i))
+                                         .email(HWStringUtils.format("{}.{}@gmail.com", uuid, i))
+                                         .phone(HWStringUtils.format("{}{}", uuid, i))
+                                         .comments(HWStringUtils.format("Test comment\n{}\n{}", uuid, i))
+                                         .build());
         }
     }
 

@@ -45,13 +45,13 @@ public class WeddingController {
                                                               """, request.getName(), request.getComments()))
                                                       .build();
         log.debug("email content:\n{}", sendEmailInput.getEmailContentHtml());
-        guestService.addGuestEntry(GuestBo.builder()
-                                          .name(request.getName())
-                                          .email(request.getEmail())
-                                          .phone(request.getPhone())
-                                          .comments(request.getComments())
-                                          .tags(toTags(request))
-                                          .build());
+        guestService.addGuest(GuestBo.builder()
+                                     .name(request.getName())
+                                     .email(request.getEmail())
+                                     .phone(request.getPhone())
+                                     .comments(request.getComments())
+                                     .tags(toTags(request))
+                                     .build());
         hwEmailService.sendEmail(sendEmailInput);
         return SignupWeddingRs.builder()
                               .message(responseMessage)

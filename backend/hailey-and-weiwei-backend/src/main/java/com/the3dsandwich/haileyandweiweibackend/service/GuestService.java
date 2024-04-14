@@ -8,9 +8,11 @@ import com.the3dsandwich.haileyandweiweibackend.utils.HWJsonUtils;
 import com.the3dsandwich.haileyandweiweibackend.utils.HWStringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /*
@@ -24,17 +26,38 @@ public class GuestService {
     private GuestRepository guestRepository;
 
     public ListGuestsOutput listGuests() {
+        List<GuestEntity> guestEntityList = guestRepository.findAll(Sort.by(Sort.Order.asc("name")));
         return ListGuestsOutput.builder()
-                               .guestList(guestRepository.findAll()
-                                                         .stream()
+                               .guestList(guestEntityList.stream()
                                                          .map(this::toBo)
                                                          .collect(Collectors.toList()))
                                .build();
 
     }
 
-    public void addGuestEntry(GuestBo bo) {
+    public void addGuest(GuestBo bo) {
         guestRepository.save(toEntity(bo));
+    }
+
+    public boolean existsGuest(Long id) {
+        return guestRepository.existsById(id);
+    }
+
+    public Optional<GuestBo> findGuest(Long id) {
+        return guestRepository.findById(id)
+                              .map(this::toBo);
+    }
+
+    public boolean existsGuestByEmail(String email) {
+        return guestRepository.existsByEmail(HWStringUtils.trimToEmpty(email));
+    }
+
+    public GuestBo updateGuest(GuestBo bo) {
+        if (!existsGuest(bo.getId())) {
+            log.debug("update target with id {} not exist", bo.getId());
+            return null;
+        }
+        return toBo(guestRepository.save(toEntity(bo)));
     }
 
     public void pocGetEntities() {
@@ -56,10 +79,10 @@ public class GuestService {
     private GuestEntity toEntity(GuestBo bo) {
         return GuestEntity.builder()
                           .id(bo.getId())
-                          .name(bo.getName())
-                          .email(bo.getEmail())
-                          .phone(bo.getPhone())
-                          .comments(bo.getComments())
+                          .name(HWStringUtils.trimToEmpty(bo.getName()))
+                          .email(HWStringUtils.trimToEmpty(bo.getEmail()))
+                          .phone(HWStringUtils.trimToEmpty(bo.getPhone()))
+                          .comments(HWStringUtils.trimToEmpty(bo.getComments()))
                           .tags(HWStringUtils.commaJoin(bo.getTags()))
                           .build();
     }
