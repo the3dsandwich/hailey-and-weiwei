@@ -19,8 +19,21 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectScrollDownButton,
+  SelectScrollUpButton,
+  SelectSeparator,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Toaster } from "@/components/ui/sonner";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { SelectPortal, SelectViewport } from "@radix-ui/react-select";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -31,6 +44,7 @@ const formSchema = z.object({
   email: z.string().email(),
   phone: z.string(),
   comments: z.string(),
+  friendOf: z.string(),
 });
 
 const SignupForm = () => {
@@ -43,6 +57,7 @@ const SignupForm = () => {
       email: "",
       phone: "",
       comments: "",
+      friendOf: "",
     },
   });
 
@@ -171,6 +186,41 @@ const SignupForm = () => {
                     </FormLabel>
                     <FormControl>
                       <Input placeholder="Enter your comments" {...field} />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="friendOf"
+                render={({ field: { onChange, ...fieldProps } }) => (
+                  <FormItem>
+                    <FormLabel>Friend of</FormLabel>
+                    <FormControl>
+                      <Select {...fieldProps} onValueChange={onChange}>
+                        <SelectTrigger aria-label="friend-of">
+                          <SelectValue placeholder="friend of..." />
+                        </SelectTrigger>
+
+                        <SelectPortal>
+                          <SelectContent>
+                            <SelectScrollUpButton />
+                            <SelectViewport>
+                              <SelectGroup>
+                                <SelectLabel>男方親友</SelectLabel>
+                                <SelectItem value="weiwei">Wei-Wei</SelectItem>
+                              </SelectGroup>
+                              <SelectSeparator />
+                              <SelectGroup>
+                                <SelectLabel>女方親友</SelectLabel>
+                                <SelectItem value="Hailey">Hailey</SelectItem>
+                              </SelectGroup>
+                            </SelectViewport>
+                            <SelectScrollDownButton />
+                          </SelectContent>
+                        </SelectPortal>
+                      </Select>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

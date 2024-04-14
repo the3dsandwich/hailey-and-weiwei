@@ -1,11 +1,46 @@
 import TopNav from "@/components/TopNav";
 import type { Metadata } from "next";
-import { Noto_Serif_TC } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const font = Noto_Serif_TC({
-  subsets: ["latin"],
-  weight: ["400", "700"],
+const font = localFont({
+  src: [
+    {
+      path: "../components/font/NotoSerifTC-ExtraLight.otf",
+      weight: "200",
+      style: "normal",
+    },
+    {
+      path: "../components/font/NotoSerifTC-Light.otf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../components/font/NotoSerifTC-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../components/font/NotoSerifTC-Medium.otf",
+      weight: "500",
+      style: "normal",
+    },
+    {
+      path: "../components/font/NotoSerifTC-SemiBold.otf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../components/font/NotoSerifTC-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../components/font/NotoSerifTC-Black.otf",
+      weight: "900",
+      style: "normal",
+    },
+  ],
 });
 
 export const metadata: Metadata =
@@ -26,6 +61,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link
+          rel="preconnect"
+          href="https://fonts.gstatic.com"
+          crossOrigin="anonymous"
+        />
+      </head>
       <body
         className={`${font.className} antialiased border-r-gray-50 h-screen font-serif`}
       >

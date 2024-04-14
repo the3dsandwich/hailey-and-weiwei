@@ -24,6 +24,7 @@ public class InitializeDatabaseConfiguration {
                                             .email("bride@gmail.com")
                                             .phone("0987654321")
                                             .comments("新娘唷")
+                                            .friendOf("Groom")
                                             .tags("bride")
                                             .build());
             guestRepository.save(GuestEntity.builder()
@@ -31,6 +32,7 @@ public class InitializeDatabaseConfiguration {
                                             .email("groom@gmail.com")
                                             .phone("0912345678")
                                             .comments("新郎唷")
+                                            .friendOf("Bride")
                                             .tags("groom")
                                             .build());
 

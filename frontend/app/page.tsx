@@ -9,7 +9,7 @@ export default function Home() {
       <div className="w-full md:w-1/3 aspect-[2/3] relative">
         <Image
           src={centerPortrait}
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           placeholder="blur"
           fill
           alt="Picture middle portrait"

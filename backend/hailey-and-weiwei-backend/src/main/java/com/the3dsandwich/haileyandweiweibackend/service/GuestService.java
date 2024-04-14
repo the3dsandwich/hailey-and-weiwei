@@ -83,6 +83,7 @@ public class GuestService {
                           .email(HWStringUtils.trimToEmpty(bo.getEmail()))
                           .phone(HWStringUtils.trimToEmpty(bo.getPhone()))
                           .comments(HWStringUtils.trimToEmpty(bo.getComments()))
+                          .friendOf(bo.getFriendOf())
                           .tags(HWStringUtils.commaJoin(bo.getTags()))
                           .build();
     }

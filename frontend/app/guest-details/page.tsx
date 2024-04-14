@@ -1,4 +1,4 @@
-import { GuestDetailTable } from "@/components/guest-detail-table";
+import { GuestDetailTable } from "@/components/GuestDetailTable";
 import React from "react";
 
 const GuestDetails = async () => {

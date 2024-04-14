@@ -37,6 +37,9 @@ public class GuestEntity {
     @Column(name = "comments", nullable = false)
     private String comments;
 
+    @Column(name = "friend_of", nullable = false)
+    private String friendOf;
+
     @Column(name = "tags")
     private String tags;
 

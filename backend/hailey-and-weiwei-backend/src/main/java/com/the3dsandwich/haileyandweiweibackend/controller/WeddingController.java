@@ -50,6 +50,8 @@ public class WeddingController {
                                      .email(request.getEmail())
                                      .phone(request.getPhone())
                                      .comments(request.getComments())
+                                     .vegetarian(request.isVegetarian())
+                                     .friendOf(request.getFriendOf())
                                      .tags(toTags(request))
                                      .build());
         hwEmailService.sendEmail(sendEmailInput);

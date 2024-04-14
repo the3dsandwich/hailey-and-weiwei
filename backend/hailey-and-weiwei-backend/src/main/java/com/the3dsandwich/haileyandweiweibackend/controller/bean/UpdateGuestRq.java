@@ -17,6 +17,8 @@ public class UpdateGuestRq {
     private String email;
     private String phone;
     private String comments;
+    private boolean vegetarian;
+    private String friendOf;
     private List<String> tags;
 
 }
