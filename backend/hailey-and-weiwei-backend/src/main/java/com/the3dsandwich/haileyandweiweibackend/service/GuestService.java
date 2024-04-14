@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +22,8 @@ import java.util.stream.Collectors;
 @Slf4j
 @Service
 public class GuestService {
+
+    public static final String VEGETARIAN = "Vegan";
 
     @Autowired
     private GuestRepository guestRepository;
@@ -66,17 +69,26 @@ public class GuestService {
     }
 
     private GuestBo toBo(GuestEntity entity) {
-        return GuestBo.builder()
-                      .id(entity.getId())
-                      .name(entity.getName())
-                      .email(entity.getEmail())
-                      .phone(entity.getPhone())
-                      .comments(entity.getComments())
-                      .tags(HWStringUtils.commaSplit(entity.getTags()))
-                      .build();
+        GuestBo.GuestBoBuilder builder = GuestBo.builder()
+                                                .id(entity.getId())
+                                                .name(entity.getName())
+                                                .email(entity.getEmail())
+                                                .phone(entity.getPhone())
+                                                .comments(entity.getComments())
+                                                .friendOf(entity.getFriendOf());
+
+        List<String> tags = HWStringUtils.commaSplit(entity.getTags());
+        builder.tags(tags);
+        builder.vegetarian(CollectionUtils.contains(tags.iterator(), VEGETARIAN));
+
+        return builder.build();
     }
 
     private GuestEntity toEntity(GuestBo bo) {
+        List<String> tags = bo.getTags();
+        if (bo.isVegetarian()) {
+            tags.add(VEGETARIAN);
+        }
         return GuestEntity.builder()
                           .id(bo.getId())
                           .name(HWStringUtils.trimToEmpty(bo.getName()))
@@ -84,7 +96,7 @@ public class GuestService {
                           .phone(HWStringUtils.trimToEmpty(bo.getPhone()))
                           .comments(HWStringUtils.trimToEmpty(bo.getComments()))
                           .friendOf(bo.getFriendOf())
-                          .tags(HWStringUtils.commaJoin(bo.getTags()))
+                          .tags(HWStringUtils.commaJoin(tags))
                           .build();
     }
 
