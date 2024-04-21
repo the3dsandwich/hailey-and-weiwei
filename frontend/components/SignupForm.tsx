@@ -38,13 +38,26 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
+import { Checkbox } from "./ui/checkbox";
 
 const formSchema = z.object({
   name: z.string(),
+  nickname: z.string(),
   email: z.string().email(),
   phone: z.string(),
   comments: z.string(),
   friendOf: z.string(),
+  transportation: z.enum([
+    "drive",
+    "motorcycle",
+    "bike",
+    "public",
+    "ride",
+    "uber",
+    "none",
+  ]),
+  isPhysicalInvitation: z.boolean(),
+  physicalAddress: z.string(),
   vegetarian: z.boolean(),
 });
 
@@ -55,10 +68,14 @@ const SignupForm = () => {
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      nickname: "",
       email: "",
       phone: "",
       comments: "",
       friendOf: "",
+      transportation: "none",
+      isPhysicalInvitation: false,
+      physicalAddress: "",
       vegetarian: false,
     },
   });
@@ -225,6 +242,46 @@ const SignupForm = () => {
                       />
                     </FormControl>
                     <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="vegetarian"
+                render={({ field: { onChange, ...fieldProps } }) => (
+                  <FormItem>
+                    <FormLabel>素食</FormLabel>
+                    <FormControl>
+                      <Checkbox onCheckedChange={onChange} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="isPhysicalInvitation"
+                render={({ field: { onChange, ...fieldProps } }) => (
+                  <FormItem>
+                    <FormLabel>實體喜帖</FormLabel>
+                    <FormControl>
+                      <Checkbox onCheckedChange={onChange} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="physicalAddress"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>地址</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="你的地址 | Enter your physical address"
+                        required
+                        {...field}
+                      />
+                    </FormControl>
                   </FormItem>
                 )}
               />
