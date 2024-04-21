@@ -1,24 +1,18 @@
 package com.the3dsandwich.haileyandweiweibackend.controller.bean;
 
-import lombok.Builder;
+import com.the3dsandwich.haileyandweiweibackend.service.bean.GuestBo;
+import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.List;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.SuperBuilder;
 
 /*
  * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
  */
 @Data
-@Builder
-public class UpdateGuestRq {
-
-    private long id;
-    private String name;
-    private String email;
-    private String phone;
-    private String comments;
-    private boolean vegetarian;
-    private String friendOf;
-    private List<String> tags;
+@SuperBuilder
+@AllArgsConstructor
+@EqualsAndHashCode(callSuper = true)
+public class UpdateGuestRq extends GuestBo {
 
 }

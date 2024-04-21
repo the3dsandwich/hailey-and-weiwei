@@ -7,6 +7,7 @@ import com.the3dsandwich.haileyandweiweibackend.controller.bean.UpdateGuestRs;
 import com.the3dsandwich.haileyandweiweibackend.service.GuestService;
 import com.the3dsandwich.haileyandweiweibackend.service.bean.GuestBo;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -37,14 +38,9 @@ public class GuestController {
     }
 
     private ListGuestsRsGuest toListGuestsRsGuest(GuestBo bo) {
-        return ListGuestsRsGuest.builder()
-                                .id(bo.getId())
-                                .name(bo.getName())
-                                .phone(bo.getPhone())
-                                .email(bo.getEmail())
-                                .comments(bo.getComments())
-                                .tags(bo.getTags())
-                                .build();
+        ListGuestsRsGuest rsGuest = new ListGuestsRsGuest();
+        BeanUtils.copyProperties(bo, rsGuest); // TODO don't use BeanUtils
+        return rsGuest;
     }
 
     @PostMapping("/updateGuest")
@@ -53,31 +49,14 @@ public class GuestController {
             log.debug("cannot find guest by id = {}", request.getId());
             return null;
         }
-        GuestBo updated = guestService.updateGuest(toGuestBo(request));
+        GuestBo updated = guestService.updateGuest(request);
         return toUpdateGuestRs(updated);
     }
 
     private UpdateGuestRs toUpdateGuestRs(GuestBo bo) {
-        return UpdateGuestRs.builder()
-                            .id(bo.getId())
-                            .name(bo.getName())
-                            .phone(bo.getPhone())
-                            .email(bo.getEmail())
-                            .comments(bo.getComments())
-                            .tags(bo.getTags())
-                            .build();
-    }
-
-    private GuestBo toGuestBo(UpdateGuestRq request) {
-        return GuestBo.builder()
-                      .id(request.getId())
-                      .id(request.getId())
-                      .name(request.getName())
-                      .phone(request.getPhone())
-                      .email(request.getEmail())
-                      .comments(request.getComments())
-                      .tags(request.getTags())
-                      .build();
+        UpdateGuestRs rs = new UpdateGuestRs();
+        BeanUtils.copyProperties(bo, rs); // TODO don't use BeanUtils
+        return rs;
     }
 
 }
