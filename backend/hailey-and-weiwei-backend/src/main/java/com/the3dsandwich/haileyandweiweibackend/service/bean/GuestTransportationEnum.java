@@ -15,7 +15,7 @@ public enum GuestTransportationEnum {
     PUBLIC_TRANSPORTATION("public"),
     RIDE("ride"),
     UBER("uber"),
-    NONE(HWStringUtils.EMPTY);
+    NONE("none");
 
     private final String code;
 

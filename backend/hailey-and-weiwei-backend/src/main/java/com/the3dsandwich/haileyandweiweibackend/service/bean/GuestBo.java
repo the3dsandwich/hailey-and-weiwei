@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
 
 import java.util.List;
+import java.util.Objects;
 
 /*
  * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
@@ -26,5 +27,14 @@ public class GuestBo {
     private Boolean isPhysicalInvitation;
     private String physicalAddress;
     private List<String> tags;
+
+    public String getTransportation() {
+        return Objects.requireNonNullElse(transportation, GuestTransportationEnum.NONE)
+                      .getCode();
+    }
+
+    public void setTransportation(String code) {
+        transportation = GuestTransportationEnum.of(code);
+    }
 
 }

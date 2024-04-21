@@ -13,8 +13,8 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -87,29 +87,42 @@ public class GuestService {
         builder.tags(tags);
         builder.vegetarian(CollectionUtils.contains(tags.iterator(), VEGETARIAN));
 
-        return builder.build();
+        GuestBo bo = builder.build();
+
+        if (log.isDebugEnabled()) {
+            log.debug("toBo:\n{}", HWJsonUtils.toPrettyJson(bo));
+        }
+
+        return bo;
     }
 
     private GuestEntity toEntity(GuestBo bo) {
-        List<String> tags = bo.getTags();
+        List<String> tags = CollectionUtils.isEmpty(bo.getTags())
+                ? new ArrayList<>()
+                : bo.getTags();
         if (bo.isVegetarian()) {
             tags.add(VEGETARIAN);
         }
 
-        return GuestEntity.builder()
-                          .id(bo.getId())
-                          .name(HWStringUtils.trimToEmpty(bo.getName()))
-                          .nickname(HWStringUtils.trimToEmpty(bo.getNickname()))
-                          .email(HWStringUtils.trimToEmpty(bo.getEmail()))
-                          .phone(HWStringUtils.trimToEmpty(bo.getPhone()))
-                          .comments(HWStringUtils.trimToEmpty(bo.getComments()))
-                          .friendOf(bo.getFriendOf())
-                          .transportation(Objects.requireNonNullElse(bo.getTransportation(), GuestTransportationEnum.NONE)
-                                                 .getCode())
-                          .isPhysicalInvitation(Boolean.TRUE.equals(bo.getIsPhysicalInvitation()))
-                          .physicalAddress(HWStringUtils.trimToEmpty(bo.getPhysicalAddress()))
-                          .tags(HWStringUtils.commaJoin(tags))
-                          .build();
+        GuestEntity entity = GuestEntity.builder()
+                                        .id(bo.getId())
+                                        .name(HWStringUtils.trimToEmpty(bo.getName()))
+                                        .nickname(HWStringUtils.trimToEmpty(bo.getNickname()))
+                                        .email(HWStringUtils.trimToEmpty(bo.getEmail()))
+                                        .phone(HWStringUtils.trimToEmpty(bo.getPhone()))
+                                        .comments(HWStringUtils.trimToEmpty(bo.getComments()))
+                                        .friendOf(bo.getFriendOf())
+                                        .transportation(bo.getTransportation())
+                                        .isPhysicalInvitation(Boolean.TRUE.equals(bo.getIsPhysicalInvitation()))
+                                        .physicalAddress(HWStringUtils.trimToEmpty(bo.getPhysicalAddress()))
+                                        .tags(HWStringUtils.commaJoin(tags))
+                                        .build();
+
+        if (log.isDebugEnabled()) {
+            log.debug("toEntity:\n{}", HWJsonUtils.toPrettyJson(entity));
+        }
+
+        return entity;
     }
 
 }
