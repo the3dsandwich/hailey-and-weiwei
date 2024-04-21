@@ -1,6 +1,7 @@
 package com.the3dsandwich.haileyandweiweibackend.service;
 
 import com.the3dsandwich.haileyandweiweibackend.service.bean.GuestBo;
+import com.the3dsandwich.haileyandweiweibackend.service.bean.GuestTransportationEnum;
 import com.the3dsandwich.haileyandweiweibackend.service.bean.ListGuestsOutput;
 import com.the3dsandwich.haileyandweiweibackend.service.data.GuestRepository;
 import com.the3dsandwich.haileyandweiweibackend.service.data.entity.GuestEntity;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -72,10 +74,14 @@ public class GuestService {
         GuestBo.GuestBoBuilder builder = GuestBo.builder()
                                                 .id(entity.getId())
                                                 .name(entity.getName())
+                                                .nickname(entity.getNickname())
                                                 .email(entity.getEmail())
                                                 .phone(entity.getPhone())
                                                 .comments(entity.getComments())
-                                                .friendOf(entity.getFriendOf());
+                                                .friendOf(entity.getFriendOf())
+                                                .transportation(GuestTransportationEnum.of(entity.getTransportation()))
+                                                .isPhysicalInvitation(entity.getIsPhysicalInvitation())
+                                                .physicalAddress(entity.getPhysicalAddress());
 
         List<String> tags = HWStringUtils.commaSplit(entity.getTags());
         builder.tags(tags);
@@ -89,13 +95,19 @@ public class GuestService {
         if (bo.isVegetarian()) {
             tags.add(VEGETARIAN);
         }
+
         return GuestEntity.builder()
                           .id(bo.getId())
                           .name(HWStringUtils.trimToEmpty(bo.getName()))
+                          .nickname(HWStringUtils.trimToEmpty(bo.getNickname()))
                           .email(HWStringUtils.trimToEmpty(bo.getEmail()))
                           .phone(HWStringUtils.trimToEmpty(bo.getPhone()))
                           .comments(HWStringUtils.trimToEmpty(bo.getComments()))
                           .friendOf(bo.getFriendOf())
+                          .transportation(Objects.requireNonNullElse(bo.getTransportation(), GuestTransportationEnum.NONE)
+                                                 .getCode())
+                          .isPhysicalInvitation(Boolean.TRUE.equals(bo.getIsPhysicalInvitation()))
+                          .physicalAddress(HWStringUtils.trimToEmpty(bo.getPhysicalAddress()))
                           .tags(HWStringUtils.commaJoin(tags))
                           .build();
     }

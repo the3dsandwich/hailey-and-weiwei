@@ -28,6 +28,9 @@ public class GuestEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
+    @Column(name = "nickname")
+    private String nickname;
+
     @Column(name = "email", nullable = false)
     private String email;
 
@@ -39,6 +42,15 @@ public class GuestEntity {
 
     @Column(name = "friend_of", nullable = false)
     private String friendOf;
+
+    @Column(name = "transportation")
+    private String transportation;
+
+    @Column(name = "isPhysicalInvitation")
+    private Boolean isPhysicalInvitation;
+
+    @Column(name = "physicalAddress")
+    private String physicalAddress;
 
     @Column(name = "tags")
     private String tags;
