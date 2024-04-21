@@ -45,6 +45,7 @@ const formSchema = z.object({
   phone: z.string(),
   comments: z.string(),
   friendOf: z.string(),
+  vegetarian: z.boolean(),
 });
 
 const SignupForm = () => {
@@ -58,6 +59,7 @@ const SignupForm = () => {
       phone: "",
       comments: "",
       friendOf: "",
+      vegetarian: false,
     },
   });
 
@@ -110,12 +112,12 @@ const SignupForm = () => {
       <Toaster />
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">Unlock guest details</Button>
+          <Button variant="outline">我們的婚禮表單 | Signup</Button>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:max-w-[728px]">
           <DialogHeader>
             <DialogTitle>RSVP to Hailey and Wei-Wei&apos;s Wedding</DialogTitle>
-            <DialogDescription>Thanks for joining us!</DialogDescription>
+            <DialogDescription>感謝您的參與！</DialogDescription>
           </DialogHeader>
 
           <Form {...form}>
@@ -125,13 +127,63 @@ const SignupForm = () => {
             >
               <FormField
                 control={form.control}
+                name="friendOf"
+                render={({ field: { onChange, ...fieldProps } }) => (
+                  <FormItem>
+                    <FormLabel>親友</FormLabel>
+                    <FormControl>
+                      <Select {...fieldProps} onValueChange={onChange}>
+                        <SelectTrigger aria-label="friend-of">
+                          <SelectValue placeholder="friend of..." />
+                        </SelectTrigger>
+
+                        <SelectPortal>
+                          <SelectContent>
+                            <SelectScrollUpButton />
+                            <SelectViewport>
+                              <SelectGroup>
+                                <SelectLabel>男方親友</SelectLabel>
+                                <SelectItem value="weiwei">
+                                  🤵🏻 Wei-Wei Yeh
+                                </SelectItem>
+                              </SelectGroup>
+
+                              <SelectSeparator />
+
+                              <SelectGroup>
+                                <SelectLabel>女方親友</SelectLabel>
+                                <SelectItem value="Hailey">
+                                  👰🏻‍♀️ Hailey Hsu
+                                </SelectItem>
+                              </SelectGroup>
+
+                              <SelectSeparator />
+
+                              <SelectGroup>
+                                <SelectLabel>雙方親友</SelectLabel>
+                                <SelectItem value="BOL">
+                                  ⛪️ 台北靈糧堂
+                                </SelectItem>
+                              </SelectGroup>
+                            </SelectViewport>
+                            <SelectScrollDownButton />
+                          </SelectContent>
+                        </SelectPortal>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+                    <FormLabel>名字</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter your name"
+                        placeholder="你的名字 | Enter your name"
                         required
                         {...field}
                       />
@@ -148,7 +200,7 @@ const SignupForm = () => {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter your email"
+                        placeholder="你的 email | Enter your email"
                         required
                         type="email"
                         {...field}
@@ -163,10 +215,10 @@ const SignupForm = () => {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Phone</FormLabel>
+                    <FormLabel>電話</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="Enter your phone"
+                        placeholder="你的手機 | Enter your phone"
                         required
                         type="tel"
                         {...field}
@@ -181,46 +233,12 @@ const SignupForm = () => {
                 name="comments"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>
-                      Additional comments or special requests
-                    </FormLabel>
+                    <FormLabel>備註</FormLabel>
                     <FormControl>
-                      <Input placeholder="Enter your comments" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="friendOf"
-                render={({ field: { onChange, ...fieldProps } }) => (
-                  <FormItem>
-                    <FormLabel>Friend of</FormLabel>
-                    <FormControl>
-                      <Select {...fieldProps} onValueChange={onChange}>
-                        <SelectTrigger aria-label="friend-of">
-                          <SelectValue placeholder="friend of..." />
-                        </SelectTrigger>
-
-                        <SelectPortal>
-                          <SelectContent>
-                            <SelectScrollUpButton />
-                            <SelectViewport>
-                              <SelectGroup>
-                                <SelectLabel>男方親友</SelectLabel>
-                                <SelectItem value="weiwei">Wei-Wei</SelectItem>
-                              </SelectGroup>
-                              <SelectSeparator />
-                              <SelectGroup>
-                                <SelectLabel>女方親友</SelectLabel>
-                                <SelectItem value="Hailey">Hailey</SelectItem>
-                              </SelectGroup>
-                            </SelectViewport>
-                            <SelectScrollDownButton />
-                          </SelectContent>
-                        </SelectPortal>
-                      </Select>
+                      <Input
+                        placeholder="留言給我們！ | Enter your comments"
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>

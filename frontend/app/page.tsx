@@ -18,7 +18,9 @@ export default function Home() {
       <div className="mt-8">
         <SignupForm />
       </div>
-      <Link href={"/guest-details"}>guest details</Link>
+      <Link href={"/guest-details"} className="font-extralight text-sm pt-12">
+        guest details
+      </Link>
     </section>
   );
 }
