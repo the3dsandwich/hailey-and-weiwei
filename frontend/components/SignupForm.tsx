@@ -61,7 +61,7 @@ const formSchema = z.object({
   vegetarian: z.boolean(),
 });
 
-const SignupForm = () => {
+const SignupForm = ({ small }: { small?: boolean }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -129,7 +129,12 @@ const SignupForm = () => {
       <Toaster />
       <Dialog>
         <DialogTrigger asChild>
-          <Button variant="outline">我們的婚禮表單 | Signup</Button>
+          <Button
+            variant={small ? "link" : "outline"}
+            size={small ? "sm" : "default"}
+          >
+            {small ? "Signup!" : "我們的婚禮表單 | Signup"}
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[728px]">
           <DialogHeader>

@@ -70,10 +70,10 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${font.className} antialiased border-r-gray-50 h-screen font-serif`}
+        className={`${font.className} antialiased border-r-gray-50 bg-red-900 text-red-100 h-screen font-serif`}
       >
         <TopNav />
-        <main className="pt-28 pb-40 min-h-screen w-full">{children}</main>
+        <main className="pt-52 pb-40 min-h-screen w-full">{children}</main>
       </body>
     </html>
   );
