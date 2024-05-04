@@ -47,15 +47,7 @@ const formSchema = z.object({
   phone: z.string(),
   comments: z.string(),
   friendOf: z.string(),
-  transportation: z.enum([
-    "drive",
-    "motorcycle",
-    "bike",
-    "public",
-    "ride",
-    "uber",
-    "none",
-  ]),
+  transportation: z.enum(["drive", "motorcycle", "ride", "none"]),
   isPhysicalInvitation: z.boolean(),
   physicalAddress: z.string(),
   vegetarian: z.boolean(),
@@ -162,7 +154,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                     <FormControl>
                       <Select {...fieldProps} onValueChange={onChange}>
                         <SelectTrigger aria-label="friend-of">
-                          <SelectValue placeholder="friend of..." />
+                          <SelectValue placeholder="誰的親友 | I am here for..." />
                         </SelectTrigger>
 
                         <SelectPortal>
@@ -211,7 +203,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                     <FormLabel>名字</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="你的名字 | Enter your name"
+                        placeholder="你的名字 | My name is..."
                         required
                         {...field}
                       />
@@ -228,7 +220,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                     <FormLabel>Email</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="你的 email | Enter your email"
+                        placeholder="你的 email | My email is..."
                         required
                         type="email"
                         {...field}
@@ -246,7 +238,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                     <FormLabel>電話</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="你的手機 | Enter your phone"
+                        placeholder="你的手機 | My phone is..."
                         required
                         type="tel"
                         {...field}
@@ -288,11 +280,62 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                     <FormLabel>地址</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="你的地址 | Enter your physical address"
+                        placeholder="你的地址 | You can mail me at..."
                         required
                         {...field}
                       />
                     </FormControl>
+                  </FormItem>
+                )}
+              />
+              <FormField
+                control={form.control}
+                name="transportation"
+                render={({ field: { onChange, ...fieldProps } }) => (
+                  <FormItem>
+                    <FormLabel>交通方式</FormLabel>
+                    <FormControl>
+                      <Select {...fieldProps} onValueChange={onChange}>
+                        <SelectTrigger aria-label="transportation">
+                          <SelectValue placeholder="來的方式 | I will arrive by..." />
+                        </SelectTrigger>
+
+                        <SelectPortal>
+                          <SelectContent>
+                            <SelectScrollUpButton />
+                            <SelectViewport>
+                              <SelectGroup>
+                                <SelectLabel>需要停車 (免費消磁)</SelectLabel>
+                                <SelectItem value="drive">🚗 開車車</SelectItem>
+                                <SelectItem value="motorcycle">
+                                  🏍️ 騎車車
+                                </SelectItem>
+                              </SelectGroup>
+
+                              <SelectSeparator />
+
+                              <SelectGroup>
+                                <SelectLabel>不需消磁</SelectLabel>
+                                <SelectItem value="ride">
+                                  🚕 別人開車/大眾運輸/腳踏車/走路
+                                </SelectItem>
+                              </SelectGroup>
+
+                              <SelectSeparator />
+
+                              <SelectGroup>
+                                <SelectLabel>雙方親友</SelectLabel>
+                                <SelectItem value="none">
+                                  🤷 窩不知道 QQ
+                                </SelectItem>
+                              </SelectGroup>
+                            </SelectViewport>
+                            <SelectScrollDownButton />
+                          </SelectContent>
+                        </SelectPortal>
+                      </Select>
+                    </FormControl>
+                    <FormMessage />
                   </FormItem>
                 )}
               />
@@ -304,7 +347,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                     <FormLabel>備註</FormLabel>
                     <FormControl>
                       <Input
-                        placeholder="留言給我們！ | Enter your comments"
+                        placeholder="留言給我們！ | I want to tell Hailey and Wei-Wei that..."
                         {...field}
                       />
                     </FormControl>
@@ -324,7 +367,6 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                   </FormItem>
                 )}
               />
-
               {form.watch("isBringCompanion") && (
                 <>
                   <FormField
@@ -358,7 +400,6 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                   />
                 </>
               )}
-
               <DialogFooter>
                 <Button type="submit" disabled={isLoading}>
                   Sign me up!
