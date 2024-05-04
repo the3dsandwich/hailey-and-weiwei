@@ -59,7 +59,15 @@ const formSchema = z.object({
   isPhysicalInvitation: z.boolean(),
   physicalAddress: z.string(),
   vegetarian: z.boolean(),
+  isBringCompanion: z.boolean(),
+  companionName: z.string(),
+  companionVegetarian: z.boolean(),
 });
+
+const HOST =
+  process.env.NODE_ENV == "development"
+    ? "http://localhost:8081"
+    : "https://haileyandweiweibackend.the3dsandwich.com";
 
 const SignupForm = ({ small }: { small?: boolean }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -77,6 +85,9 @@ const SignupForm = ({ small }: { small?: boolean }) => {
       isPhysicalInvitation: false,
       physicalAddress: "",
       vegetarian: false,
+      isBringCompanion: false,
+      companionName: "",
+      companionVegetarian: false,
     },
   });
 
@@ -86,18 +97,12 @@ const SignupForm = ({ small }: { small?: boolean }) => {
     try {
       console.log(values);
 
-      const endpoint =
-        process.env.NODE_ENV == "development"
-          ? "http://localhost:8081/signup"
-          : "https://haileyandweiweibackend.the3dsandwich.com/signup";
+      const endpoint = HOST + "/signup";
       const response = await fetch(endpoint, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Access-Control-Allow-Headers":
-            process.env.NODE_ENV == "development"
-              ? "http://localhost:8081"
-              : "https://haileyandweiweibackend.the3dsandwich.com",
+          "Access-Control-Allow-Headers": HOST,
         },
         body: JSON.stringify(values),
       });
@@ -121,6 +126,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
       });
     } finally {
       setIsLoading(false);
+      form.reset();
     }
   };
 
@@ -306,6 +312,53 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                   </FormItem>
                 )}
               />
+              <FormField
+                control={form.control}
+                name="isBringCompanion"
+                render={({ field: { onChange, ...fieldProps } }) => (
+                  <FormItem>
+                    <FormLabel>是否攜伴</FormLabel>
+                    <FormControl>
+                      <Checkbox onCheckedChange={onChange} />
+                    </FormControl>
+                  </FormItem>
+                )}
+              />
+
+              {form.watch("isBringCompanion") && (
+                <>
+                  <FormField
+                    control={form.control}
+                    name="companionName"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel>Email</FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder="攜伴名稱 | Companion's name"
+                            required
+                            {...field}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="companionVegetarian"
+                    render={({ field: { onChange, ...fieldProps } }) => (
+                      <FormItem>
+                        <FormLabel>攜伴素食</FormLabel>
+                        <FormControl>
+                          <Checkbox onCheckedChange={onChange} />
+                        </FormControl>
+                      </FormItem>
+                    )}
+                  />
+                </>
+              )}
+
               <DialogFooter>
                 <Button type="submit" disabled={isLoading}>
                   Sign me up!
