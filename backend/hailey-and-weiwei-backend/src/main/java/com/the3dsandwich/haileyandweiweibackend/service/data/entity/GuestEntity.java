@@ -31,13 +31,13 @@ public class GuestEntity {
     @Column(name = "nickname")
     private String nickname;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "phone", nullable = false)
+    @Column(name = "phone")
     private String phone;
 
-    @Column(name = "comments", nullable = false)
+    @Column(name = "comments")
     private String comments;
 
     @Column(name = "friend_of", nullable = false)
