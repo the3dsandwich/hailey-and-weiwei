@@ -11,10 +11,7 @@ public enum GuestTransportationEnum {
 
     DRIVE("drive"),
     MOTORCYCLE("motorcycle"),
-    BIKE("bike"),
-    PUBLIC_TRANSPORTATION("public"),
     RIDE("ride"),
-    UBER("uber"),
     NONE("none");
 
     private final String code;
