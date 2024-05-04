@@ -15,4 +15,8 @@ import lombok.experimental.SuperBuilder;
 @AllArgsConstructor
 public class SignupWeddingRq extends GuestBo {
 
+    private boolean isBringCompanion;
+    private String companionName;
+    private boolean companionVegetarian;
+
 }
