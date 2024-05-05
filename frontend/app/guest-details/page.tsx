@@ -37,9 +37,12 @@ const GuestDetails = async () => {
     };
   };
 
-  const { loading, data } = await fetchGuestList();
-
-  return GuestDetail(loading, data);
+  try {
+    const { loading, data } = await fetchGuestList();
+    return GuestDetail(loading, data);
+  } catch (any) {
+    return GuestDetail(true, [{}]);
+  }
 };
 
 const GuestDetail = (
@@ -55,7 +58,7 @@ const GuestDetail = (
   ]
 ) => {
   return loading ? (
-    <h1>loading</h1>
+    <h1>loading...</h1>
   ) : (
     <>
       <h1 className="text-2xl">GUEST LIST</h1>

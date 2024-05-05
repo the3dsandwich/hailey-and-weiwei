@@ -121,11 +121,12 @@ export default function Home() {
           loading="lazy"
         />
       </div>
-      <div className="text-center">
-        <hr />
-        <br />
+      <div className="text-center w-10/12 flex flex-col items-center">
+        <Hr />
         <Photo imageSrc={centerPortrait} />
         <Hr />
+      </div>
+      <div className="text-center">
         <b>「感謝您/不遠千里/見證我們的愛情」</b>
         <br />
         <br />
