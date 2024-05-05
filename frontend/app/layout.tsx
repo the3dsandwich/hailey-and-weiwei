@@ -41,6 +41,7 @@ const font = localFont({
       style: "normal",
     },
   ],
+  display: "block",
 });
 
 export const metadata: Metadata =
