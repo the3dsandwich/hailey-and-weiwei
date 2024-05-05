@@ -10,9 +10,7 @@ const TopNav = () => {
   return (
     <nav className="flex flex-col absolute w-full h-56 items-center justify-center">
       <Link href={routeHome}>
-        <h1 className="text-red-100 font-serif font-extralight text-3xl">
-          {title}
-        </h1>
+        <h1 className="text-red-100 font-extralight text-3xl">{title}</h1>
       </Link>
       <p className="text-red-100 text-center mt-2">
         Wedding invitation

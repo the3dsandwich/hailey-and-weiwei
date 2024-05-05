@@ -8,12 +8,12 @@ const font = localFont({
     {
       path: "../components/font/NotoSerifTC-ExtraLight.otf",
       weight: "200",
-      style: "normal",
+      style: "extralight",
     },
     {
       path: "../components/font/NotoSerifTC-Light.otf",
       weight: "300",
-      style: "normal",
+      style: "light",
     },
     {
       path: "../components/font/NotoSerifTC-Regular.otf",
@@ -23,26 +23,27 @@ const font = localFont({
     {
       path: "../components/font/NotoSerifTC-Medium.otf",
       weight: "500",
-      style: "normal",
+      style: "medium",
     },
     {
       path: "../components/font/NotoSerifTC-SemiBold.otf",
       weight: "600",
-      style: "normal",
+      style: "semibold",
     },
     {
       path: "../components/font/NotoSerifTC-Bold.otf",
       weight: "700",
-      style: "normal",
+      style: "bold",
     },
     {
       path: "../components/font/NotoSerifTC-Black.otf",
       weight: "900",
-      style: "normal",
+      style: "black",
     },
   ],
   display: "block",
   preload: true,
+  adjustFontFallback: false,
 });
 
 export const metadata: Metadata =
@@ -63,16 +64,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body
-        className={`${font.className} antialiased border-r-gray-50 bg-red-900 text-red-100 h-screen font-serif`}
+        className={`${font.className} antialiased border-r-gray-50 bg-red-900 text-red-100 h-screen`}
       >
         <TopNav />
         <main className="pt-52 pb-40 min-h-screen w-full">{children}</main>
