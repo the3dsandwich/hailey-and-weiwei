@@ -24,7 +24,7 @@ const SplashScreen = ({ finishLoading }: { finishLoading?: () => void }) => {
       duration: 2000,
       easing: "easeInOutExpo",
     });
-  }, []);
+  });
 
   return (
     <div className="flex h-screen w-screen items-center justify-center">
