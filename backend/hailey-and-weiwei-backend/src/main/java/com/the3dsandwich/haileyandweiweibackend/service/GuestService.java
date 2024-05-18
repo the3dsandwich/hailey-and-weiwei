@@ -71,17 +71,17 @@ public class GuestService {
     }
 
     private GuestBo toBo(GuestEntity entity) {
-        GuestBo.GuestBoBuilder builder = GuestBo.builder()
-                                                .id(entity.getId())
-                                                .name(entity.getName())
-                                                .nickname(entity.getNickname())
-                                                .email(entity.getEmail())
-                                                .phone(entity.getPhone())
-                                                .comments(entity.getComments())
-                                                .friendOf(entity.getFriendOf())
-                                                .transportation(GuestTransportationEnum.of(entity.getTransportation()))
-                                                .isPhysicalInvitation(entity.getIsPhysicalInvitation())
-                                                .physicalAddress(entity.getPhysicalAddress());
+        GuestBo.GuestBoBuilder<?, ?> builder = GuestBo.builder()
+                                                      .id(entity.getId())
+                                                      .name(entity.getName())
+                                                      .nickname(entity.getNickname())
+                                                      .email(entity.getEmail())
+                                                      .phone(entity.getPhone())
+                                                      .comments(entity.getComments())
+                                                      .friendOf(entity.getFriendOf())
+                                                      .transportation(GuestTransportationEnum.of(entity.getTransportation()))
+                                                      .isPhysicalInvitation(entity.getIsPhysicalInvitation())
+                                                      .physicalAddress(entity.getPhysicalAddress());
 
         List<String> tags = HWStringUtils.commaSplit(entity.getTags());
         builder.tags(tags);
