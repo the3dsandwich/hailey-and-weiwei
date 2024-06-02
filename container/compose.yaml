@@ -18,7 +18,7 @@ services:
       driver: gelf
       options:
         gelf-address: ${GELF_ADDRESS}
-        tag: jellyfin
+        tag: hailey-and-weiwei-postgresql
 
   pgadmin:
     image: dpage/pgadmin4:latest
@@ -42,7 +42,7 @@ services:
       driver: gelf
       options:
         gelf-address: ${GELF_ADDRESS}
-        tag: jellyfin
+        tag: hailey-and-weiwei-pgadmin
 
   backend:
     image: ghcr.io/the3dsandwich/hailey-and-weiwei-backend:dev
@@ -64,7 +64,7 @@ services:
       driver: gelf
       options:
         gelf-address: ${GELF_ADDRESS}
-        tag: jellyfin
+        tag: hailey-and-weiwei-backend
 
   frontend:
     image: ghcr.io/the3dsandwich/hailey-and-weiwei-frontend:dev
@@ -80,11 +80,11 @@ services:
       driver: gelf
       options:
         gelf-address: ${GELF_ADDRESS}
-        tag: jellyfin
+        tag: hailey-and-weiwei-frontend
 
   watchtower:
     image: containrrr/watchtower
-    container_name: hailey-and-weiwei-watchtowerr
+    container_name: hailey-and-weiwei-watchtower
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     environment:
@@ -101,7 +101,7 @@ services:
       driver: gelf
       options:
         gelf-address: ${GELF_ADDRESS}
-        tag: jellyfin
+        tag: hailey-and-weiwei-watchtower
 
 volumes:
   postgres-db-data:
