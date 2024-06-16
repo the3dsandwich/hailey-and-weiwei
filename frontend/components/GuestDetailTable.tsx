@@ -34,12 +34,12 @@ export const GuestDetailTable = (data: {
   return (
     <Table key="1">
       <TableHeader>
-        <TableRow className="text-xs font-medium tracking-wide text-gray-500 uppercase dark:text-gray-400">
+        <TableRow className="text-xs font-medium tracking-wide uppercase">
           <TableHead className="w-1/4">Name</TableHead>
           <TableHead>Email</TableHead>
           <TableHead>Phone</TableHead>
           <TableHead>Tags</TableHead>
-          <TableHead className="w-1/12 text-right">Comment</TableHead>
+          <TableHead></TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>

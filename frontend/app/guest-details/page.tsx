@@ -1,5 +1,8 @@
 import { GuestDetailTable } from "@/components/GuestDetailTable";
 import React from "react";
+import Hr from "../component/Hr";
+import Link from "next/link";
+import TopNav from "@/components/TopNav";
 
 const GuestDetails = async () => {
   const fetchGuestList = async () => {
@@ -61,8 +64,11 @@ const GuestDetail = (
     <h1>loading...</h1>
   ) : (
     <>
-      <h1 className="text-2xl">GUEST LIST</h1>
-      <hr />
+      <Link type="button" href={"/signup"} className="font-extralight text-sm">
+        (signup)
+      </Link>
+      <Hr />
+      <h1 className="text-2xl mb-12">GUEST LIST</h1>
       <GuestDetailTable dataList={data} />
     </>
   );

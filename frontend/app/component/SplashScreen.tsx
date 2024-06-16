@@ -31,7 +31,7 @@ const SplashScreen = ({ finishLoading }: { finishLoading?: () => void }) => {
       <p id="logo" className="text-center">
         HAILEY
         <br />
-        AND
+        ❤️
         <br />
         WEIWEI
       </p>

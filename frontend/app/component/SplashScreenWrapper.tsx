@@ -8,7 +8,10 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [delayFinished, setDelayFinished] = useState(false);
+  const [delayFinished, setDelayFinished] = useState(
+    process.env.NODE_ENV == "development"
+    // false
+  );
 
   const handleFinishSplashScreen = () => {
     setDelayFinished(true);

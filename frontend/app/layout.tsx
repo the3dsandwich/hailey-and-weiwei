@@ -1,8 +1,6 @@
-import TopNav from "@/components/TopNav";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import SplashScreen from "./component/SplashScreen";
 import SplashScreenWrapper from "./component/SplashScreenWrapper";
 
 const font = localFont({
@@ -67,11 +65,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${font.className} antialiased border-r-gray-50 bg-red-900 text-red-100 h-screen`}
+        className={`${font.className} antialiased border-r-gray-50 bg-red-900 text-red-100 h-screen min-h-screen w-full`}
       >
         <SplashScreenWrapper>
-          <TopNav />
-          <main className="pt-52 pb-40 min-h-screen w-full">{children}</main>
+          <main className="flex flex-col items-center">
+            <section className="w-11/12 flex flex-col">{children}</section>
+          </main>
         </SplashScreenWrapper>
       </body>
     </html>

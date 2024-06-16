@@ -3,12 +3,11 @@
 import Link from "next/link";
 import SignupForm from "./SignupForm";
 
-const TopNav = () => {
+const TopNav = ({ showSignupForm }: { showSignupForm?: boolean }) => {
   const routeHome = "/";
-  const title = "Hailey & Wei-Wei";
 
   return (
-    <nav className="flex flex-col absolute w-full h-56 items-center justify-center">
+    <nav className="flex flex-col w-full mt-10 mb-10 items-center justify-center">
       <Link href={routeHome}>
         <h1 className="text-red-100 font-extralight text-3xl">
           Hailey & Wei-Wei&apos;s
@@ -26,7 +25,7 @@ const TopNav = () => {
           </i>
         </small>
         <br />
-        <SignupForm small />
+        {showSignupForm && <SignupForm small />}
       </p>
     </nav>
   );
