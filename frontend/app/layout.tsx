@@ -54,7 +54,7 @@ export const metadata: Metadata =
       }
     : {
         title: "Hailey and Wei-Wei's Wedding",
-        description: "Everything related",
+        description: "歡迎參與肇倫和善維的婚禮！",
       };
 
 export default function RootLayout({
