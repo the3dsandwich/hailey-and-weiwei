@@ -12,9 +12,9 @@ export default function Home() {
         Please save your date for our wedding ceremony on 1 Dec 2024.
         <br />
         肇倫和善維的婚禮將在 2024 年 12 月 1 日<br />
-        於台北寒舍艾美酒店舉行
+        於台北寒舍艾美酒店舉行（午宴）
         <br />
-        敬請保留時間共襄盛舉
+        敬請保留時間共襄盛舉！
       </p>
       <Link
         href={"/guest-details"}
