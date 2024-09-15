@@ -112,7 +112,7 @@ export default function Home() {
       <iframe
         title="le meridien"
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57843.81565744926!2d121.5193902!3d25.025979700000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abba50d70b7b%3A0x313d65ce289c8267!2z5Y-w5YyX5a-S6IiN6Im-576O6YWS5bqX!5e0!3m2!1szh-TW!2stw!4v1714287626753!5m2!1szh-TW!2stw"
-        className="w-full aspect-square"
+        className="w-full md:w-1/3 aspect-square"
         loading="lazy"
       />
       <Hr />

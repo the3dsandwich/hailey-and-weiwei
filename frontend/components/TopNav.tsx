@@ -21,6 +21,13 @@ const TopNav = ({ showSignupForm }: { showSignupForm?: boolean }) => {
             1 Dec 2024 |{" "}
             <a href="https://maps.app.goo.gl/cHEWEB56d5x1qjXv6" target="_blank">
               Le Méridien Taipei
+            </a>{" "}
+            <a
+              href="https://maps.app.goo.gl/cHEWEB56d5x1qjXv6"
+              target="_blank"
+              className="underline"
+            >
+              (directions)
             </a>
           </i>
         </small>

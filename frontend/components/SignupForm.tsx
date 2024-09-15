@@ -130,6 +130,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
           <Button
             variant={small ? "link" : "outline"}
             size={small ? "sm" : "default"}
+            style={small ? { textDecoration: "underline" } : {}}
           >
             {small ? "Signup!" : "我們的婚禮表單 | Signup"}
           </Button>
