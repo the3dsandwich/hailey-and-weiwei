@@ -324,7 +324,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                               <SelectSeparator />
 
                               <SelectGroup>
-                                <SelectLabel>雙方親友</SelectLabel>
+                                <SelectLabel>？？</SelectLabel>
                                 <SelectItem value="none">
                                   🤷 窩不知道 QQ
                                 </SelectItem>
