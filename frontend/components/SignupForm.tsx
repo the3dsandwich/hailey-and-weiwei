@@ -201,7 +201,9 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>名字</FormLabel>
+                    <FormLabel>
+                      名字<span className="text-red-700"> *</span>
+                    </FormLabel>
                     <FormControl>
                       <Input
                         placeholder="你的名字 | My name is..."
@@ -218,7 +220,9 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Email</FormLabel>
+                    <FormLabel>
+                      Email<span className="text-red-700"> *</span>
+                    </FormLabel>
                     <FormControl>
                       <Input
                         placeholder="你的 email | My email is..."
@@ -236,7 +240,9 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                 name="phone"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>電話</FormLabel>
+                    <FormLabel>
+                      電話<span className="text-red-700"> *</span>
+                    </FormLabel>
                     <FormControl>
                       <Input
                         placeholder="你的手機 | My phone is..."
@@ -278,7 +284,9 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                 name="physicalAddress"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>地址</FormLabel>
+                    <FormLabel>
+                      地址<span className="text-red-700"> *</span>
+                    </FormLabel>
                     <FormControl>
                       <Input
                         placeholder="你的地址 | You can mail me at..."
@@ -375,7 +383,9 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                     name="companionName"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Email</FormLabel>
+                        <FormLabel>
+                          攜伴名字<span className="text-red-700"> *</span>
+                        </FormLabel>
                         <FormControl>
                           <Input
                             placeholder="攜伴名稱 | Companion's name"
