@@ -44,7 +44,6 @@ const formSchema = z.object({
   name: z.string(),
   nickname: z.string(),
   email: z.string().email(),
-  phone: z.string(),
   comments: z.string(),
   friendOf: z.string(),
   transportation: z.enum(["drive", "motorcycle", "ride", "none"]),
@@ -70,7 +69,6 @@ const SignupForm = ({ small }: { small?: boolean }) => {
       name: "",
       nickname: "",
       email: "",
-      phone: "",
       comments: "",
       friendOf: "",
       transportation: "none",
@@ -237,26 +235,6 @@ const SignupForm = ({ small }: { small?: boolean }) => {
               />
               <FormField
                 control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      電話<span className="text-red-700"> *</span>
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="你的手機 | My phone is..."
-                        required
-                        type="tel"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
                 name="vegetarian"
                 render={({ field: { onChange, ...fieldProps } }) => (
                   <FormItem>
@@ -279,24 +257,26 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="physicalAddress"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      地址<span className="text-red-700"> *</span>
-                    </FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="你的地址 | You can mail me at..."
-                        required
-                        {...field}
-                      />
-                    </FormControl>
-                  </FormItem>
-                )}
-              />
+              {form.watch("isPhysicalInvitation") && (
+                <FormField
+                  control={form.control}
+                  name="physicalAddress"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>
+                        地址<span className="text-red-700"> *</span>
+                      </FormLabel>
+                      <FormControl>
+                        <Input
+                          placeholder="你的地址 | You can mail me at..."
+                          required
+                          {...field}
+                        />
+                      </FormControl>
+                    </FormItem>
+                  )}
+                />
+              )}
               <FormField
                 control={form.control}
                 name="transportation"

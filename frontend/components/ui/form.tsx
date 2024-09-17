@@ -80,7 +80,7 @@ const FormItem = React.forwardRef<
     <FormItemContext.Provider value={{ id }}>
       <div
         ref={ref}
-        className={cn("grid grid-cols-6 items-center gap-4", className)}
+        className={cn("grid grid-cols-4 items-center gap-4", className)}
         {...props}
       />
     </FormItemContext.Provider>
@@ -122,7 +122,7 @@ const FormControl = React.forwardRef<
           : `${formDescriptionId} ${formMessageId}`
       }
       aria-invalid={!!error}
-      className="col-span-5"
+      className="col-span-3"
       {...props}
     />
   );

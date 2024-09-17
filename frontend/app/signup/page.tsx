@@ -1,8 +1,7 @@
 import SignupForm from "@/components/SignupForm";
-import centerPortrait from "../images/sample-large-portrait.jpg";
-import Photo from "../component/Photo";
 import Hr from "../component/Hr";
 import {
+  WANG0705,
   WANG0773_桌框,
   WANG0795_謝卡2,
   WANG0803_簽名冊_相本封面,
@@ -13,25 +12,16 @@ import {
 export default function Home() {
   return (
     <div className="text-center flex flex-col items-center mb-40">
-      <WANG0803_簽名冊_相本封面 />
+      <WANG0795_謝卡2 />
       <Hr />
-      <h1 className="text-cream-can-200 font-extrabold text-xl">婚禮邀請函</h1>
-      <h1 className="text-red-100 font-extrabold text-xl">婚禮邀請函</h1>
-      <h1 className="text-red-200 font-extrabold text-xl">婚禮邀請函</h1>
       <h1 className="text-red-300 font-extrabold text-xl">婚禮邀請函</h1>
-      <h1 className="text-red-400 font-extrabold text-xl">婚禮邀請函</h1>
-      <h1 className="text-red-500 font-extrabold text-xl">婚禮邀請函</h1>
+      <br />
       Welcome to our wedding
       <br />
-      【婚禮】
       <br />
       人生是一場以愛之名的相聚
       <br />
-      很開心這一天
-      <br />
-      你為我們而來
-      <br />
-      我 們 是 彼 此 親 自 挑 選 的 家 人
+      我們是彼此親自挑選的家人
       <br />
       希望我們有幸
       <br />
@@ -39,15 +29,10 @@ export default function Home() {
       <br />
       見證我們此生最重要的決定
       <br />
-      願我們繼續在
       <br />
-      每一個溫暖的日子相約
-      <br />
+      <SignupForm />
       <Hr />
-      - 囍 -
-      <br />
-      <Hr />
-      <WANG0773_桌框 />
+      <WANG0882_桌框 />
       <Hr />
       人的一生有三萬多天
       <br />
@@ -55,10 +40,23 @@ export default function Home() {
       <br />
       你專為我們而來
       <br />
-      Welcome to our wedding
       <br />
+      <div className="text-left w-66">
+        日期：2024 年 12 月 01 日
+        <br />
+        時間：11:30 進場 12:00 開席
+        <br />
+        地點：台北寒舍艾美酒店 二樓宴會廳{" "}
+        <a
+          href="https://maps.app.goo.gl/cHEWEB56d5x1qjXv6"
+          target="_blank"
+          className="underline"
+        >
+          (Google 地圖)
+        </a>
+      </div>
       <Hr />
-      <WANG0795_謝卡2 />
+      <WANG0705 />
       <Hr />
       致珍貴的你們
       <br />
@@ -66,12 +64,12 @@ export default function Home() {
       <br />
       在 2024 年 12 月 01 日這一天
       <br />
-      將攜手走過無數個日夜
+      向彼此立下永恆的盟約
       <br />
-      續約至無限個相互陪伴的時刻
+      攜手度過往後無數個日夜
       <br />
       <br />
-      期待著我們在這一天重聚
+      期待我們在這一天重聚
       <br />
       不僅是一個婚禮 更像是一個 party
       <br />
@@ -81,11 +79,8 @@ export default function Home() {
       <br />
       更想與你分享我們的故事
       <br />
-      <Hr />
-      囍
       <br />
-      <Hr />
-      <WANG0882_桌框 />
+      <SignupForm />
       <Hr />
       <div className="text-left">
         <h1>溫馨提醒</h1>
@@ -101,12 +96,25 @@ export default function Home() {
         </ul>
       </div>
       <Hr />
+      <WANG0986_放大24寸 />
+      <Hr />
       <h1>婚宴日期 | Date</h1>
-      2024 年 12 月 01 日 上午 11:30
+      2024 年 12 月 01 日
+      <br />
+      11:30 進場 12:00 開席
+      <br />
+      <br />
       <h1>婚宴地址 | Address</h1>
       台北寒舍艾美酒店
       <br />
-      台北市信義區松仁路38號
+      台北市信義區松仁路38號二樓
+      <a
+        href="https://maps.app.goo.gl/cHEWEB56d5x1qjXv6"
+        target="_blank"
+        className="underline"
+      >
+        (Google 地圖)
+      </a>
       <br />
       <br />
       <iframe
@@ -116,10 +124,7 @@ export default function Home() {
         loading="lazy"
       />
       <Hr />
-      <WANG0986_放大24寸 />
-      <Hr />
       <b>「感謝您/不遠千里/見證我們的愛情」</b>
-      <br />
       <br />
       2024.12.01
       <br />
