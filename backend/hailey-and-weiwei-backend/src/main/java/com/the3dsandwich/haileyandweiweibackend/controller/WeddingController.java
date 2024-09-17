@@ -42,8 +42,20 @@ public class WeddingController {
         String responseMessage = HWStringUtils.format("You, {}, will be called, BECAUSE I KNOW YOUR EMAIL IS {} AND YOU SAID \"{}\"", request.getName(), request.getEmail(), request.getComments());
         SendEmailInput sendEmailInput = SendEmailInput.builder()
                                                       .emailSubject("Hailey and Wei-Wei's Wedding")
-                                                      .emailFromName("Wei-Wei")
-                                                      .emailFromAddress("poctest@haileyandweiweiwedding.the3dsandwich.com")
+                                                      .emailFromName(switch (request.getFriendOf()) {
+                                                          case "Wei-Wei" -> "葉善維 Wei-Wei";
+                                                          case "Hailey" -> "許肇倫 Hailey";
+                                                          case "BOL" -> "肇倫和善維 Hailey & Wei-Wei";
+                                                          default ->
+                                                                  throw new IllegalStateException("Unexpected value: " + request.getFriendOf());
+                                                      })
+                                                      .emailFromAddress(switch (request.getFriendOf()) {
+                                                          case "Wei-Wei" -> "weiwei@wedding.haileyweiwei.com";
+                                                          case "Hailey" -> "hailey@wedding.haileyweiwei.com";
+                                                          case "BOL" -> "haileyandweiwei@wedding.haileyweiwei.com";
+                                                          default ->
+                                                                  throw new IllegalStateException("Unexpected value: " + request.getFriendOf());
+                                                      })
                                                       .emailToAddress(request.getEmail())
                                                       .emailContentHtml(HWStringUtils.format("""
                                                                 <body>

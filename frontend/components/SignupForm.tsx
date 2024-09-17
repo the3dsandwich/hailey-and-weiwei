@@ -162,7 +162,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                             <SelectViewport>
                               <SelectGroup>
                                 <SelectLabel>男方親友</SelectLabel>
-                                <SelectItem value="weiwei">
+                                <SelectItem value="Wei-Wei">
                                   🤵🏻 Wei-Wei Yeh
                                 </SelectItem>
                               </SelectGroup>
