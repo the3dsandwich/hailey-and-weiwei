@@ -1,11 +1,11 @@
 package com.the3dsandwich.haileyandweiweibackend.service.bean;
 
+import java.util.List;
+import java.util.Objects;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
-
-import java.util.List;
-import java.util.Objects;
 
 /*
  * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
@@ -19,7 +19,6 @@ public class GuestBo {
     private String name;
     private String nickname;
     private String email;
-    private String phone;
     private String comments;
     private boolean vegetarian;
     private String friendOf;

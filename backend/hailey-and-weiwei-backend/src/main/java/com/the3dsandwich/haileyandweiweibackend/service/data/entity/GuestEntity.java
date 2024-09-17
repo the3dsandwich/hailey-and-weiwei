@@ -34,9 +34,6 @@ public class GuestEntity {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "phone")
-    private String phone;
-
     @Column(name = "comments")
     private String comments;
 

@@ -32,7 +32,6 @@ public class WeddingController {
                                    .name(request.getCompanionName())
                                    .vegetarian(request.isCompanionVegetarian())
                                    .friendOf(request.getName())
-                                   .phone(request.getPhone())
                                    .email(request.getEmail())
                                    .nickname(HWStringUtils.format("{}'s companion", request.getName()))
                                    .isPhysicalInvitation(false)
@@ -40,7 +39,7 @@ public class WeddingController {
                                    .build();
         companion.setTransportation(request.getTransportation());
         guestService.addGuest(companion);
-        String responseMessage = HWStringUtils.format("You, {}, will be called, BECAUSE I KNOW YOUR PHONE IS {} AND EMAIL {} AND YOU SAID \"{}\"", request.getName(), request.getPhone(), request.getEmail(), request.getComments());
+        String responseMessage = HWStringUtils.format("You, {}, will be called, BECAUSE I KNOW YOUR EMAIL IS {} AND YOU SAID \"{}\"", request.getName(), request.getEmail(), request.getComments());
         SendEmailInput sendEmailInput = SendEmailInput.builder()
                                                       .emailSubject("Hailey and Wei-Wei's Wedding")
                                                       .emailFromName("Wei-Wei")

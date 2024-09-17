@@ -58,7 +58,6 @@ public class POCController {
             guestService.addGuest(GuestBo.builder()
                                          .name(HWStringUtils.format("Test Name {} {}", uuid, i))
                                          .email(HWStringUtils.format("{}.{}@gmail.com", uuid, i))
-                                         .phone(HWStringUtils.format("{}{}", uuid, i))
                                          .comments(HWStringUtils.format("Test comment\n{}\n{}", uuid, i))
                                          .build());
         }
