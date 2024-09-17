@@ -12,7 +12,7 @@ import {
 export default function Home() {
   return (
     <div className="text-center flex flex-col items-center mb-40">
-      <WANG0795_謝卡2 />
+      <WANG0705 />
       <Hr />
       <h1 className="text-red-300 font-extrabold text-xl">婚禮邀請函</h1>
       <br />
@@ -32,7 +32,7 @@ export default function Home() {
       <br />
       <SignupForm />
       <Hr />
-      <WANG0882_桌框 />
+      <WANG0795_謝卡2 />
       <Hr />
       人的一生有三萬多天
       <br />
@@ -41,7 +41,7 @@ export default function Home() {
       你專為我們而來
       <br />
       <br />
-      <div className="text-left w-66">
+      <div className="text-left w-96">
         日期：2024 年 12 月 01 日
         <br />
         時間：11:30 進場 12:00 開席
@@ -56,7 +56,7 @@ export default function Home() {
         </a>
       </div>
       <Hr />
-      <WANG0705 />
+      <WANG0882_桌框 />
       <Hr />
       致珍貴的你們
       <br />
@@ -82,29 +82,32 @@ export default function Home() {
       <br />
       <SignupForm />
       <Hr />
-      <div className="text-left">
+      <div className="text-left w-96">
         <h1>溫馨提醒</h1>
         <ul>
-          <li>{"> "} tip 1</li>
-          <li>{"> "}tip 2</li>
-          <li>{"> "}tip 3</li>
           <li>
             {"> "}
             自行開車、騎車皆可免費消磁，請各位直接停進地下室，婚宴結束後拿給酒店工作人員消磁即可
           </li>
-          <li>{"> "}嘔吐費 8,000 請各位理性飲酒，感恩，平安，阿門</li>
+          <li>
+            {"> "}酒店不收開瓶費，但若有嘔吐，酒店會酌收清潔費
+            $8,000，請各位理性飲酒，感恩
+          </li>
+          <li>
+            {"> "}11:30-12:00 開席前，宴會廳外面有餐前酒會，歡迎各位盡情享用
+          </li>
         </ul>
       </div>
       <Hr />
       <WANG0986_放大24寸 />
       <Hr />
-      <h1>婚宴日期 | Date</h1>
+      <b>婚宴日期 | Date</b>
       2024 年 12 月 01 日
       <br />
       11:30 進場 12:00 開席
       <br />
       <br />
-      <h1>婚宴地址 | Address</h1>
+      <b>婚宴地址 | Address</b>
       台北寒舍艾美酒店
       <br />
       台北市信義區松仁路38號二樓
