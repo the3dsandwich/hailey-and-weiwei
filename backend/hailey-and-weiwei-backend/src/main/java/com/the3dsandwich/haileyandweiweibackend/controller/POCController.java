@@ -102,14 +102,12 @@ public class POCController {
                               .build();
         } catch (ResendException e) {
             log.error("send email failed (resend): {}", e.getMessage());
-            e.printStackTrace();
             return SendEmailRs.builder()
                               .errorMessage(e.getMessage())
                               .status("FAIL")
                               .build();
         } catch (RuntimeException e) {
             log.error("send email failed: {}", e.getMessage());
-            e.printStackTrace();
             return SendEmailRs.builder()
                               .errorMessage(e.getMessage())
                               .status("FAIL")

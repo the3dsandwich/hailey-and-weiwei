@@ -30,7 +30,7 @@ public class HWEmailService {
         SendEmailRequest sendEmailRequest = buildSendEmailRequest(input);
 
         if (log.isDebugEnabled()) {
-            log.debug("sending email:\n{}", HWJsonUtils.toPrettyJson(input));
+            log.debug("sending email:\n{}", HWJsonUtils.toPrettyJson(sendEmailRequest));
         }
 
         try {
@@ -46,14 +46,12 @@ public class HWEmailService {
                                   .build();
         } catch (ResendException e) {
             log.error("send email failed (resend): {}", e.getMessage());
-            e.printStackTrace();
             return SendEmailOutput.builder()
                                   .errorMessage(e.getMessage())
                                   .status("FAIL")
                                   .build();
         } catch (RuntimeException e) {
             log.error("send email failed: {}", e.getMessage());
-            e.printStackTrace();
             return SendEmailOutput.builder()
                                   .errorMessage(e.getMessage())
                                   .status("FAIL")

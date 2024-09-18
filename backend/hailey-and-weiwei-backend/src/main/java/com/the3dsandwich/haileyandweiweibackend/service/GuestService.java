@@ -8,6 +8,7 @@ import com.the3dsandwich.haileyandweiweibackend.service.data.entity.GuestEntity;
 import com.the3dsandwich.haileyandweiweibackend.utils.HWJsonUtils;
 import com.the3dsandwich.haileyandweiweibackend.utils.HWStringUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
@@ -111,7 +112,7 @@ public class GuestService {
                                         .comments(HWStringUtils.trimToEmpty(bo.getComments()))
                                         .friendOf(bo.getFriendOf())
                                         .transportation(bo.getTransportation())
-                                        .isPhysicalInvitation(Boolean.TRUE.equals(bo.getIsPhysicalInvitation()))
+                                        .isPhysicalInvitation(BooleanUtils.isTrue(bo.getIsPhysicalInvitation()))
                                         .physicalAddress(HWStringUtils.trimToEmpty(bo.getPhysicalAddress()))
                                         .tags(HWStringUtils.commaJoin(tags))
                                         .build();

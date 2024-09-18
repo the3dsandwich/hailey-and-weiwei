@@ -17,9 +17,8 @@ public class HWJsonUtils {
             ObjectWriter ow = new ObjectMapper().writer()
                                                 .withDefaultPrettyPrinter();
             return ow.writeValueAsString(target);
-        } catch (JsonProcessingException exception) {
-            log.error("json pretty print error: {}", exception.getMessage());
-            exception.printStackTrace();
+        } catch (JsonProcessingException e) {
+            log.error("json pretty print error: {}", e.getMessage());
         }
 
         return HWStringUtils.EMPTY;
