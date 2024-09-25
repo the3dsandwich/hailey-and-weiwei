@@ -2,9 +2,7 @@ import SignupForm from "@/components/SignupForm";
 import Hr from "../component/Hr";
 import {
   WANG0705,
-  WANG0773_桌框,
   WANG0795_謝卡2,
-  WANG0803_簽名冊_相本封面,
   WANG0882_桌框,
   WANG0986_放大24寸,
 } from "../images/images";
@@ -44,7 +42,7 @@ export default function Home() {
       <div className="text-left w-96">
         日期：2024 年 12 月 01 日
         <br />
-        時間：11:30 進場 12:00 開席
+        時間：11:30 進場 12:30 開席
         <br />
         地點：台北寒舍艾美酒店 二樓宴會廳{" "}
         <a
@@ -87,14 +85,14 @@ export default function Home() {
         <ul>
           <li>
             {"> "}
-            自行開車、騎車皆可免費消磁，請各位直接停進地下室，婚宴結束後拿給酒店工作人員消磁即可
+            自行開車、騎車皆可免費消磁，請直接停進地下室，婚宴結束後，將磁卡拿給酒店工作人員消磁即可
           </li>
           <li>
             {"> "}酒店不收開瓶費，但若有嘔吐，酒店會酌收清潔費
             $8,000，請各位理性飲酒，感恩
           </li>
           <li>
-            {"> "}11:30-12:00 開席前，宴會廳外面有餐前酒會，歡迎各位盡情享用
+            {"> "}11:30-12:30 開席前，宴會廳外面有餐前雞尾酒會，歡迎各位盡情享用
           </li>
         </ul>
       </div>
@@ -104,7 +102,7 @@ export default function Home() {
       <b>婚宴日期 | Date</b>
       2024 年 12 月 01 日
       <br />
-      11:30 進場 12:00 開席
+      11:30 進場 12:30 開席
       <br />
       <br />
       <b>婚宴地址 | Address</b>
