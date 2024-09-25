@@ -9,15 +9,18 @@ import lombok.Getter;
 @Getter
 public enum GuestTransportationEnum {
 
-    DRIVE("drive"),
-    MOTORCYCLE("motorcycle"),
-    RIDE("ride"),
-    NONE("none");
+    DRIVE("drive", "\uD83D\uDE97 開車車（免費消磁，請直接停進地下室，婚宴結束後，將磁卡拿給酒店工作人員消磁即可）"),
+    MOTORCYCLE("motorcycle",
+               "\uD83C\uDFCD\uFE0F 騎車車（免費消磁，請直接停進地下室，婚宴結束後，將磁卡拿給酒店工作人員消磁即可）"),
+    RIDE("ride", "\uD83D\uDE95 別人開車/大眾運輸/腳踏車/走路"),
+    NONE("none", "\uD83E\uDD37 窩不知道 QQ");
 
     private final String code;
+    private final String name;
 
-    GuestTransportationEnum(String code) {
+    GuestTransportationEnum(String code, String name) {
         this.code = code;
+        this.name = name;
     }
 
     public static GuestTransportationEnum of(String code) {
