@@ -42,12 +42,12 @@ export default function Home() {
         <br />
         你專為我們而來
         <Hr />
-        <div className="text-left w-60">
-          日期：2024 年 12 月 01 日
+        <div className="text-left w-72">
+          <b>日期</b>：2024 年 12 月 01 日
           <br />
-          時間：12:00 進場 12:30 開席
+          <b>時間</b>：12:00 進場 12:30 開席
           <br />
-          地點：台北寒舍艾美酒店 二樓宴會廳
+          <b>地點</b>：台北寒舍艾美酒店 二樓宴會廳
           <br />
           <a
             href="https://maps.app.goo.gl/cHEWEB56d5x1qjXv6"
@@ -87,7 +87,7 @@ export default function Home() {
         <SignupForm />
         <Hr />
         <div className="text-left w-72">
-          <h1>溫馨提醒</h1>
+          <b>溫馨提醒</b>
           <ul>
             <li>
               {"> "}
@@ -106,8 +106,7 @@ export default function Home() {
         <br />
         <br />
         <WANG0986_放大24寸 />
-        <br />
-        <br />
+        <Hr />
         <b>婚宴日期 | Date</b>
         2024 年 12 月 01 日
         <br />
@@ -125,8 +124,7 @@ export default function Home() {
         >
           (Google 地圖)
         </a>
-        <br />
-        <br />
+        <Hr />
         <iframe
           title="le meridien"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57843.81565744926!2d121.5193902!3d25.025979700000008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abba50d70b7b%3A0x313d65ce289c8267!2z5Y-w5YyX5a-S6IiN6Im-576O6YWS5bqX!5e0!3m2!1szh-TW!2stw!4v1714287626753!5m2!1szh-TW!2stw"
