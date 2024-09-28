@@ -314,31 +314,13 @@ const SignupForm = ({ small }: { small?: boolean }) => {
 
                               <SelectGroup>
                                 <SelectLabel>？？</SelectLabel>
-                                <SelectItem value="none">
-                                  🤷 窩不知道 QQ
-                                </SelectItem>
+                                <SelectItem value="none">🤷 待確認</SelectItem>
                               </SelectGroup>
                             </SelectViewport>
                             <SelectScrollDownButton />
                           </SelectContent>
                         </SelectPortal>
                       </Select>
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="comments"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>備註</FormLabel>
-                    <FormControl>
-                      <Input
-                        placeholder="留言給我們！ | I want to tell Hailey and Wei-Wei that..."
-                        {...field}
-                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -391,6 +373,22 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                   />
                 </>
               )}
+              <FormField
+                control={form.control}
+                name="comments"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>備註</FormLabel>
+                    <FormControl>
+                      <Input
+                        placeholder="留言給我們！ | I want to tell Hailey and Wei-Wei that..."
+                        {...field}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
               <DialogFooter>
                 <Button type="submit" disabled={isLoading}>
                   Sign me up!

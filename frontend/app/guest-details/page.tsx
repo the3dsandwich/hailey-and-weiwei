@@ -2,7 +2,6 @@ import { GuestDetailTable } from "@/components/GuestDetailTable";
 import React from "react";
 import Hr from "../component/Hr";
 import Link from "next/link";
-import TopNav from "@/components/TopNav";
 
 const GuestDetails = async () => {
   const fetchGuestList = async () => {
@@ -26,13 +25,11 @@ const GuestDetails = async () => {
         (d: {
           name: string;
           email: string;
-          phone: string;
           comments: string;
           tags: [string];
         }) => ({
           name: d.name,
           email: d.email,
-          phone: d.phone,
           comments: d.comments,
           tags: d.tags,
         })
@@ -53,7 +50,6 @@ const GuestDetail = (
   data: [
     {
       name?: string;
-      phone?: string;
       email?: string;
       comments?: string;
       tags?: [string];
@@ -64,7 +60,7 @@ const GuestDetail = (
     <h1>loading...</h1>
   ) : (
     <>
-      <Link type="button" href={"/signup"} className="font-extralight text-sm">
+      <Link type="button" href={"/"} className="font-extralight text-sm">
         (signup)
       </Link>
       <Hr />
