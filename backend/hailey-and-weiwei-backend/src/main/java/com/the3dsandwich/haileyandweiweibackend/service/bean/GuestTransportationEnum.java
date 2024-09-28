@@ -13,7 +13,7 @@ public enum GuestTransportationEnum {
     MOTORCYCLE("motorcycle",
                "\uD83C\uDFCD\uFE0F 騎車車（免費消磁，請直接停進地下室，婚宴結束後，將磁卡拿給酒店工作人員消磁即可）"),
     RIDE("ride", "\uD83D\uDE95 別人開車/大眾運輸/腳踏車/走路"),
-    NONE("none", "\uD83E\uDD37 窩不知道 QQ");
+    NONE("none", "\uD83E\uDD37 待確認");
 
     private final String code;
     private final String name;
@@ -37,5 +37,4 @@ public enum GuestTransportationEnum {
     public String toString() {
         return code;
     }
-
 }

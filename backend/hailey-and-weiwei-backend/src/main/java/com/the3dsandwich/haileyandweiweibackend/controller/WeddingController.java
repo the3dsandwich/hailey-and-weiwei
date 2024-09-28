@@ -85,7 +85,7 @@ public class WeddingController {
     private String buildContentHtml(SignupWeddingRq request) {
         String contentHtml = HWStringUtils.format("""
                                                           <!DOCTYPE html>
-                                                          <html lang="en">
+                                                          <html lang="zh_TW">
                                                             <head>
                                                               <meta charset="UTF-8" />
                                                               <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -95,17 +95,24 @@ public class WeddingController {
                                                               <h2>感謝您回覆肇倫與善維的婚宴表單！</h2>
                                                               親愛的 {} 您好，<br />
                                                               謝謝您參加肇倫與善維的婚禮，以下是您的回覆內容，請再確認是否有需要更改，若需要更改請聯絡肇倫或善維<br /><br />
-                                                              <b>親友</b><br />{} 的親友<br /><br />
-                                                              <b>電子郵件</b><br />{}<br /><br />
-                                                              <b>素食</b><br />{}<br /><br />
-                                                              <b>實體喜帖</b><br />{}<br /><br />
-                                                              <b>交通方式</b><br />{}<br /><br />
-                                                              <b>留言</b><br />{}<br /><br />
-                                                              <b>是否攜伴</b><br />{}<br /><br />
+                                                              <b>親友</b><br />
+                                                              {}的親友<br /><br />
+                                                              <b>電子郵件</b><br />
+                                                              {}<br /><br />
+                                                              <b>素食</b><br />
+                                                              {}<br /><br />
+                                                              <b>實體喜帖</b><br />
+                                                              {}<br /><br />
+                                                              <b>交通方式</b><br />
+                                                              {}<br /><br />
+                                                              <b>留言</b><br />
+                                                              {}<br /><br />
+                                                              <b>是否攜伴</b><br />
+                                                              {}<br /><br />
                                                               以下是婚宴當天資訊：<br /><br />
                                                               <b>婚宴日期 | Date</b><br />
-                                                              2024 年 12 月 01 日<br />
-                                                              11:30 進場 12:30 開席<br /><br />
+                                                              2024 年 12 月 01 日 <br />
+                                                              12 : 00 進場 12 : 30 開席<br /><br />
                                                               <b>婚宴地址 | Address</b><br />
                                                               台北寒舍艾美酒店<br />
                                                               台北市信義區松仁路38號二樓<br />
@@ -113,14 +120,16 @@ public class WeddingController {
                                                                 href="https://maps.app.goo.gl/cHEWEB56d5x1qjXv6"
                                                                 target="_blank"
                                                                 className="underline"
-                                                              >(Google 地圖)</a><br /><br />
+                                                                >(Google 地圖)
+                                                              </a><br /><br />
                                                               <b>電子喜帖 | Invitation</b><br />
                                                               <a
                                                                 href="https://wedding.haileyweiwei.com/signup"
                                                                 target="_blank"
                                                                 className="underline"
-                                                              >https://wedding.haileyweiwei.com/signup</a><br /><br />
-                                                              誠心期待您的蒞臨！<br />——肇倫和善維<br /><br />
+                                                              >https://wedding.haileyweiwei.com</a><br /><br />
+                                                              誠心期待您的蒞臨！<br />
+                                                              ——肇倫和善維<br /><br />
                                                               <img
                                                                 src="https://wedding.haileyweiwei.com/_next/image?url=/_next/static/media/WANG0986_%E6%94%BE%E5%A4%A724%E5%AF%B8.db3b87a8.jpg&w=1080&q=75"
                                                                 alt="img"
@@ -128,7 +137,7 @@ public class WeddingController {
                                                               />
                                                             </body>
                                                           </html>
-                                                          """,
+                                                              """,
                                                   request.getName(),
                                                   From.of(request.getFriendOf())
                                                       .getFromName(),
@@ -184,7 +193,6 @@ public class WeddingController {
                 default -> throw new IllegalStateException("Unexpected value: " + friendOf);
             };
         }
-
     }
 
 }
