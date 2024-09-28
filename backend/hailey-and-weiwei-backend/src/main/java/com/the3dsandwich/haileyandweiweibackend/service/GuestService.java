@@ -99,7 +99,9 @@ public class GuestService {
     }
 
     private GuestEntity toEntity(GuestBo bo) {
-        List<String> tags = new ArrayList<>(bo.getTags());
+        List<String> tags = new ArrayList<>(CollectionUtils.isEmpty(bo.getTags())
+                                                    ? new ArrayList<>()
+                                                    : bo.getTags());
         if (bo.isVegetarian()) {
             tags.add(VEGETARIAN);
         }
