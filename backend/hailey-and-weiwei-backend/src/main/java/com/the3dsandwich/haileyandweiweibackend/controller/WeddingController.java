@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /*
  * Copyright (c) 2024. the3dsandwich (Shann Wei Yeh)
  */
@@ -63,6 +65,7 @@ public class WeddingController {
                                    .email(request.getEmail())
                                    .nickname(HWStringUtils.format("{}'s companion", request.getName()))
                                    .isPhysicalInvitation(false)
+                                   .tags(List.of(GuestService.GUEST))
                                    .comments(HWStringUtils.format("{}'s companion", request.getName()))
                                    .build();
         companion.setTransportation(request.getTransportation());

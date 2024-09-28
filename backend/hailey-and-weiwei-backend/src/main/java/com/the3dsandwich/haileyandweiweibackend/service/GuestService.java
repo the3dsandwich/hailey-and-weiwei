@@ -27,6 +27,8 @@ import java.util.stream.Collectors;
 public class GuestService {
 
     public static final String VEGETARIAN = "Vegan";
+    public static final String GUEST = "Guest";
+    public static final String PHYSICAL = "Physical Invitation";
 
     @Autowired
     private GuestRepository guestRepository;
@@ -97,11 +99,12 @@ public class GuestService {
     }
 
     private GuestEntity toEntity(GuestBo bo) {
-        List<String> tags = CollectionUtils.isEmpty(bo.getTags())
-                ? new ArrayList<>()
-                : bo.getTags();
+        List<String> tags = new ArrayList<>(bo.getTags());
         if (bo.isVegetarian()) {
             tags.add(VEGETARIAN);
+        }
+        if (BooleanUtils.isTrue(bo.getIsPhysicalInvitation())) {
+            tags.add(PHYSICAL);
         }
 
         GuestEntity entity = GuestEntity.builder()
