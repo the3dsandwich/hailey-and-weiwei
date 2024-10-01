@@ -45,7 +45,7 @@ export default function Home() {
         <div className="text-left w-72">
           <b>日期</b>：2024 年 12 月 01 日
           <br />
-          <b>時間</b>：12:00 進場 12:30 開席
+          <b>時間</b>：12:00 入席
           <br />
           <b>地點</b>：台北寒舍艾美酒店 二樓宴會廳
           <br />
@@ -110,7 +110,7 @@ export default function Home() {
         <b>婚宴日期 | Date</b>
         2024 年 12 月 01 日
         <br />
-        12:00 進場 12:30 開席
+        12:00 入席
         <br />
         <br />
         <b>婚宴地址 | Address</b>

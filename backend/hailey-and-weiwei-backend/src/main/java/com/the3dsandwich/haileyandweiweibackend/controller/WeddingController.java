@@ -115,7 +115,7 @@ public class WeddingController {
                                                               以下是婚宴當天資訊：<br /><br />
                                                               <b>婚宴日期 | Date</b><br />
                                                               2024 年 12 月 01 日 <br />
-                                                              12 : 00 進場 12 : 30 開席<br /><br />
+                                                              12 : 00 入席<br /><br />
                                                               <b>婚宴地址 | Address</b><br />
                                                               台北寒舍艾美酒店<br />
                                                               台北市信義區松仁路38號二樓<br />
