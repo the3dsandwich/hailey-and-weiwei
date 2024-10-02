@@ -63,11 +63,8 @@ const GuestDetail = (
     <h1>loading...</h1>
   ) : (
     <>
-      <Link type="button" href={"/"} className="font-extralight text-sm">
-        (signup)
-      </Link>
       <Hr />
-      <h1 className="text-2xl mb-12">GUEST LIST</h1>
+      <h1 className="text-2xl mb-12">已填賓客名單 (total: {data?.length})</h1>
       <GuestDetailTable dataList={data} />
     </>
   );

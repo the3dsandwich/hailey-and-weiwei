@@ -35,10 +35,10 @@ export const GuestDetailTable = (data: {
     <Table key="1">
       <TableHeader>
         <TableRow className="text-xs font-medium tracking-wide uppercase">
-          <TableHead className="w-1/4">Name</TableHead>
+          <TableHead className="w-1/4">姓名</TableHead>
           <TableHead>Email</TableHead>
-          <TableHead>Friend Of</TableHead>
-          <TableHead>Tags</TableHead>
+          <TableHead>親友</TableHead>
+          <TableHead>標籤</TableHead>
           <TableHead></TableHead>
         </TableRow>
       </TableHeader>
