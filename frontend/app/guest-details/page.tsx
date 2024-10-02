@@ -26,11 +26,13 @@ const GuestDetails = async () => {
           name: string;
           email: string;
           comments: string;
+          friendOf: string;
           tags: [string];
         }) => ({
           name: d.name,
           email: d.email,
           comments: d.comments,
+          friendOf: d.friendOf,
           tags: d.tags,
         })
       ),
@@ -52,6 +54,7 @@ const GuestDetail = (
       name?: string;
       email?: string;
       comments?: string;
+      friendOf?: string;
       tags?: [string];
     }
   ]

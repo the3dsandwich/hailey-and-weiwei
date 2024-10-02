@@ -24,6 +24,7 @@ export const GuestDetailTable = (data: {
       name?: string;
       email?: string;
       comments?: string;
+      friendOf?: string;
       tags?: [string];
     }
   ];
@@ -36,6 +37,7 @@ export const GuestDetailTable = (data: {
         <TableRow className="text-xs font-medium tracking-wide uppercase">
           <TableHead className="w-1/4">Name</TableHead>
           <TableHead>Email</TableHead>
+          <TableHead>Friend Of</TableHead>
           <TableHead>Tags</TableHead>
           <TableHead></TableHead>
         </TableRow>
@@ -47,6 +49,7 @@ export const GuestDetailTable = (data: {
               name={d.name}
               email={d.email}
               comments={d.comments}
+              friendOf={d.friendOf}
               tags={d.tags}
               key={d.name}
             />
@@ -61,13 +64,15 @@ const GuestDetailTableRow = (data: {
   phone?: string;
   email?: string;
   comments?: string;
+  friendOf?: string;
   tags?: [string];
 }) => {
-  const { name, phone, email, comments, tags } = data;
+  const { name, phone, email, comments, tags, friendOf } = data;
   return (
     <TableRow className="hover:bg-gray-100 dark:hover:bg-gray-800">
       <TableCell className="font-semibold">{name}</TableCell>
       <TableCell>{email}</TableCell>
+      <TableCell>{friendOf}</TableCell>
       <TableCell className="space-x-2">
         {tags?.map((t) => (
           <Badge variant="outline" key={t}>
