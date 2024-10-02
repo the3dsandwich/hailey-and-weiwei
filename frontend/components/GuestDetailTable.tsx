@@ -81,17 +81,19 @@ const GuestDetailTableRow = (data: {
         ))}
       </TableCell>
       <TableCell className="w-1/12 text-right">
-        <Popover>
-          <PopoverTrigger asChild>
-            <Button size="icon" variant="ghost">
-              <ChevronDownIcon className="h-4 w-4" />
-              <span className="sr-only">View</span>
-            </Button>
-          </PopoverTrigger>
-          <PopoverContent>
-            <p>{comments}</p>
-          </PopoverContent>
-        </Popover>
+        {comments && (
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button size="icon" variant="ghost">
+                <ChevronDownIcon className="h-4 w-4" />
+                <span className="sr-only">View</span>
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <p>{comments}</p>
+            </PopoverContent>
+          </Popover>
+        )}
       </TableCell>
     </TableRow>
   );
