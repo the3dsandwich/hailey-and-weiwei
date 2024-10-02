@@ -62,6 +62,7 @@ const HOST =
 
 const SignupForm = ({ small }: { small?: boolean }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [open, setOpen] = useState(false);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -117,13 +118,14 @@ const SignupForm = ({ small }: { small?: boolean }) => {
     } finally {
       setIsLoading(false);
       form.reset();
+      setOpen(false);
     }
   };
 
   return (
     <>
       <Toaster />
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger asChild>
           <Button
             variant={small ? "link" : "outline"}
