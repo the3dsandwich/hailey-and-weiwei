@@ -127,7 +127,7 @@ public class WeddingController {
                                                               </a><br /><br />
                                                               <b>電子喜帖 | Invitation</b><br />
                                                               <a
-                                                                href="https://wedding.haileyweiwei.com/signup"
+                                                                href="https://wedding.haileyweiwei.com"
                                                                 target="_blank"
                                                                 className="underline"
                                                               >https://wedding.haileyweiwei.com</a><br /><br />
