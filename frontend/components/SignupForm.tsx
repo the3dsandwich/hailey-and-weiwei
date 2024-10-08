@@ -39,6 +39,7 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { z } from "zod";
 import { Checkbox } from "./ui/checkbox";
+import { Textarea } from "./ui/textarea";
 
 const formSchema = z.object({
   name: z.string(),
@@ -382,7 +383,8 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                   <FormItem>
                     <FormLabel>備註</FormLabel>
                     <FormControl>
-                      <Input
+                      <Textarea
+                        rows={5}
                         placeholder="留言給我們！ | I want to tell Hailey and Wei-Wei that..."
                         {...field}
                       />
