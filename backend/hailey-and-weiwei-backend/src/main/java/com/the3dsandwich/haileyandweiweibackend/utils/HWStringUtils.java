@@ -18,7 +18,8 @@ public class HWStringUtils extends StringUtils {
     }
 
     public static List<String> commaSplit(String commaSeparatedString) {
-        return Arrays.stream(StringUtils.split(commaSeparatedString, ","))
+        return Arrays.stream(StringUtils.split(trimToEmpty(commaSeparatedString), ","))
+                     .map(StringUtils::trimToEmpty)
                      .toList();
     }
 

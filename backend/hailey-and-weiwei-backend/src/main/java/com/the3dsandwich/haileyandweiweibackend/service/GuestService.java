@@ -39,9 +39,11 @@ public class GuestService {
         return ListGuestsOutput.builder()
                                .guestList(guestEntityList.stream()
                                                          .map(this::toBo)
+                                                         .filter(guest -> guest != null && (CollectionUtils.isEmpty(
+                                                                 guest.getTags()) || !guest.getTags()
+                                                                                           .contains("hidden")))
                                                          .collect(Collectors.toList()))
                                .build();
-
     }
 
     public void addGuest(GuestBo bo) {
