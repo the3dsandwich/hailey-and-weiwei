@@ -35,7 +35,8 @@ public class GuestService {
 
     public ListGuestsOutput listGuests() {
         List<GuestEntity> guestEntityList = guestRepository.findAll(Sort.by(Sort.Order.asc("friendOf"),
-                                                                            Sort.Order.desc("id")));
+                                                                            Sort.Order.asc("tags"),
+                                                                            Sort.Order.desc("tags")));
         return ListGuestsOutput.builder()
                                .guestList(guestEntityList.stream()
                                                          .map(this::toBo)
