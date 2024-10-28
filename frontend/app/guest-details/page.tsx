@@ -73,11 +73,17 @@ const GuestDetail = (
     <>
       <Hr />
       <h1 className="text-2xl mb-12">已填賓客名單 (total: {data?.length})</h1>
-      {countTags.entries().map((value, index) => (
-        <h1 key={value[0] + index} className="text-xl mb-12">
-          {value[0]}: {value[1]} 人
-        </h1>
-      ))}
+      <p>
+        {countTags
+          .entries()
+          .toArray()
+          .map((value, index) => (
+            <span key={value[0] + index} className="text-xs">
+              {value[0]}: {value[1]}
+              {" 人 "}
+            </span>
+          ))}
+      </p>
       <GuestDetailTable dataList={data} />
     </>
   );
