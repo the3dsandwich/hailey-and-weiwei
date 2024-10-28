@@ -62,13 +62,10 @@ const GuestDetail = (
   const countTags: Map<string, number> = new Map();
   data.forEach(({ tags }) => {
     const labelTag = tags?.[0];
-    console.log(labelTag);
-
     if (labelTag) {
       countTags.set(labelTag, (countTags.get(labelTag) ?? 0) + 1);
     }
   });
-  console.log(countTags.entries());
 
   return loading ? (
     <h1>loading...</h1>
@@ -76,10 +73,10 @@ const GuestDetail = (
     <>
       <Hr />
       <h1 className="text-2xl mb-12">已填賓客名單 (total: {data?.length})</h1>
-      {countTags.entries().map((value) => (
-        <p key={value[0]} className="text-xl mb-12">
+      {countTags.entries().map((value, index) => (
+        <h1 key={value[0] + index} className="text-xl mb-12">
           {value[0]}: {value[1]} 人
-        </p>
+        </h1>
       ))}
       <GuestDetailTable dataList={data} />
     </>
