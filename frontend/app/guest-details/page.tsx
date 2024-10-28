@@ -61,10 +61,8 @@ const GuestDetail = (
 ) => {
   const countTags: Map<string, number> = new Map();
   data.forEach(({ tags }) => {
-    const labelTag = tags?.[0];
-    if (labelTag) {
-      countTags.set(labelTag, (countTags.get(labelTag) ?? 0) + 1);
-    }
+    const labelTag = tags?.[0] ?? "none";
+    countTags.set(labelTag, (countTags.get(labelTag) ?? 0) + 1);
   });
 
   return loading ? (
