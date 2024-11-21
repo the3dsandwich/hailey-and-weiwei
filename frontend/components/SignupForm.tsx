@@ -248,7 +248,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                   </FormItem>
                 )}
               />
-              <FormField
+              {/* <FormField
                 control={form.control}
                 name="isPhysicalInvitation"
                 render={({ field: { onChange, ...fieldProps } }) => (
@@ -259,7 +259,7 @@ const SignupForm = ({ small }: { small?: boolean }) => {
                     </FormControl>
                   </FormItem>
                 )}
-              />
+              /> */}
               {form.watch("isPhysicalInvitation") && (
                 <FormField
                   control={form.control}
