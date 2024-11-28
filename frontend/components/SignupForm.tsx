@@ -61,7 +61,13 @@ const HOST =
     ? "http://localhost:8081"
     : "https://haileyandweiweibackend.the3dsandwich.com";
 
-const SignupForm = ({ small }: { small?: boolean }) => {
+const SignupForm = ({
+  small,
+  disabled,
+}: {
+  small?: boolean;
+  disabled?: boolean;
+}) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [open, setOpen] = useState(false);
 
@@ -123,6 +129,11 @@ const SignupForm = ({ small }: { small?: boolean }) => {
     }
   };
 
+  const displayText = () => {
+    if (disabled) return "2024.12.01 | 期待與您相見";
+    return small ? "Signup!" : "我們的婚禮表單 | Signup";
+  };
+
   return (
     <>
       <Toaster />
@@ -132,8 +143,9 @@ const SignupForm = ({ small }: { small?: boolean }) => {
             variant={small ? "link" : "outline"}
             size={small ? "sm" : "default"}
             style={small ? { textDecoration: "underline" } : {}}
+            disabled={disabled}
           >
-            {small ? "Signup!" : "我們的婚禮表單 | Signup"}
+            {displayText()}
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[728px]">

@@ -11,7 +11,7 @@ import TopNav from "@/components/TopNav";
 export default function Home() {
   return (
     <>
-      <TopNav showSignupForm />
+      <TopNav />
       <div className="text-center flex flex-col items-center mb-40">
         <WANG0705 />
         <br />
@@ -30,7 +30,7 @@ export default function Home() {
         見證我們此生最重要的決定
         <br />
         <br />
-        <SignupForm />
+        <SignupForm disabled />
         <br />
         <br />
         <WANG0795_謝卡2 />
@@ -84,7 +84,7 @@ export default function Home() {
         更想與你分享我們的故事
         <br />
         <br />
-        <SignupForm />
+        <SignupForm disabled />
         <Hr />
         <div className="text-left w-72">
           <b>溫馨提醒</b>
@@ -135,7 +135,7 @@ export default function Home() {
         <br />
         我們，婚禮見
         <div className="mt-8">
-          <SignupForm />
+          <SignupForm disabled />
         </div>
       </div>
     </>
